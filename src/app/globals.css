@@ -1,19 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
-/* Configure your theme directly here */
+@import "tailwindcss";
+
 @theme {
-  /* Override or extend values using CSS variables */
-  --font-display: "Satoshi", "sans-serif";
+  /* The Premium Gold Palette */
+  --color-gold: #D4AF37;
+  --color-gold-muted: #C5A059;
+  --color-gold-light: #F3E5AB;
   
-  /* Define custom colors (OKLCH is the new standard, but hex works too) */
-  --color-primary: oklch(0.5 0.15 200);
-  --color-secondary: #3b82f6;
-
-  /* Custom breakpoints */
-  --breakpoint-3xl: 120rem;
+  /* The Dark Base */
+  --color-richblack: #0A0A0A;
+  --color-charcoal: #141414;
+  --color-bone: #F9F6F0;
 }
 
-/* Add custom utilities */
-@utility text-shadow-sm {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    /* Hooks into the Space Grotesk font from your layout.tsx */
+    font-family: var(--font-space), sans-serif; 
+  }
 }
+
