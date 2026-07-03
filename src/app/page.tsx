@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 // import Navbar from "@/components/Navbar";
 import ProcessSection from "@/components/ProcessSection";
+import PropertyListing from "@/components/PropertyListing";
 import RecentProjects from "@/components/RecentProjects";
 import ServicesAccordion from "@/components/ServicesAccordion";
 import StatsAboutSection from "@/components/StatsAboutSection";
@@ -19,6 +20,7 @@ export default function Home() {
     <StatsAboutSection />
     <TextRevealSection />
     <ServicesAccordion />
+    <PropertyListing />
     <RecentProjects />
     <CTASection />
     <ProcessSection />
