@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google"; 
 import "./globals.css";
+// Uncomment these!
 // import Navbar from "@/components/Navbar";
-// import SmoothScroll from "@/components/SmoothScroll";
+import SmoothScroll from "@/components/SmoothScroll";
 import NextTopLoader from "nextjs-toploader";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -44,11 +45,12 @@ export default function RootLayout({
           zIndex={1600}
         />
         
-        {/* <SmoothScroll> */}
-          {/* <Navbar />  */}
+        {/* Remove the comments surrounding SmoothScroll */}
+        <SmoothScroll>
+           
           {children}
           <ScrollToTop />
-        {/* </SmoothScroll> */}
+        </SmoothScroll>
         
       </body>
     </html>
