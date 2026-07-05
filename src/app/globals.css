@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
-@import "tailwindcss";
-
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -17,15 +15,14 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #000000;
+    /* Warm Alabaster White to complement the Gold */
+    --background: #FDFBF7; 
+    --foreground: #0A0A0A;
   }
 
   body {
     background-color: var(--background);
     color: var(--foreground);
-    /* Hooks into the Space Grotesk font from your layout.tsx */
-    font-family: var(--font-space), sans-serif; 
+    font-family: 'Manrope', sans-serif; 
   }
 }
-

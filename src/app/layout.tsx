@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google"; 
+import { Manrope } from "next/font/google"; // 1. Import Manrope
 import "./globals.css";
-// Uncomment these!
 // import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import NextTopLoader from "nextjs-toploader";
 import ScrollToTop from "@/components/ScrollToTop";
 
-// Configure Font
-const spaceGrotesk = Space_Grotesk({ 
+// 2. Configure Manrope Font
+const manrope = Manrope({ 
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-space" 
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-manrope" 
 });
 
 export const metadata: Metadata = {
@@ -31,9 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={spaceGrotesk.className}>
+      {/* 3. Apply Manrope to the body */}
+      <body className={manrope.className}>
         <NextTopLoader
-          color="#000000"     
+          color="#D4AF37"     // Updated to premium gold
           initialPosition={0.08}
           crawlSpeed={200}
           height={3}          
@@ -41,13 +41,12 @@ export default function RootLayout({
           showSpinner={false} 
           easing="ease"
           speed={200}
-          shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+          shadow="0 0 10px #D4AF37,0 0 5px #D4AF37" // Updated shadow to gold
           zIndex={1600}
         />
         
-        {/* Remove the comments surrounding SmoothScroll */}
         <SmoothScroll>
-           
+          {/* <Navbar />  */}
           {children}
           <ScrollToTop />
         </SmoothScroll>

@@ -1,224 +1,157 @@
 "use client";
 
-import React, { useRef, useState, useLayoutEffect } from 'react';
-import { ArrowRight, ArrowLeft, Quote } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
+import React, { useRef } from "react";
+import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 
-// Register ScrollTrigger
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
+// ─────────────────────────────────────────────────────────────────
+// DUMMY DATA FOR SLICK CONSTRUCTION (Text Only)
+// ─────────────────────────────────────────────────────────────────
 const testimonials = [
   {
     id: 1,
-    quote: "They did an amazing work for our home",
-    text: "Pivotal Builders transformed our outdated property into a modern sanctuary. Their attention to detail, from the custom millwork to the lighting design, was simply flawless. We felt supported every step of the way.",
-    name: "John Carter",
-    role: "Homeowner, San Francisco",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
+    quote: "The level of precision and transparency is unmatched. Slick Construction turned our complex architectural plans into a flawless reality.",
+    name: "Noah Mitchell",
+    role: "Private Homeowner",
   },
   {
     id: 2,
-    quote: "A seamless process from start to finish",
-    text: "Construction can be stressful, but the team made it effortless. The project management was transparent, and they finished two weeks ahead of schedule. Truly professional partners.",
-    name: "Sarah Jenkins",
-    role: "Real Estate Developer",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
+    quote: "A very well-designed experience that made building simple. Everything was clear, on schedule, and completely stress-free.",
+    name: "Emma Collins",
+    role: "Commercial Investor",
   },
   {
     id: 3,
-    quote: "Exceeded our expectations in every way",
-    text: "We hired them for an ADU addition, and the quality of craftsmanship is indistinguishable from the main house. They respected our budget and delivered a luxury product.",
-    name: "Michael Chen",
-    role: "Architect, Bay Area",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
+    quote: "Absolutely phenomenal craftsmanship. They took our initial concepts and engineered a space that far exceeded our expectations.",
+    name: "Sarah Jenkins",
+    role: "Property Developer",
   },
   {
     id: 4,
-    quote: "Attention to detail is their superpower",
-    text: "I've worked with many builders, but Pivotal stands out. Their ability to solve complex structural challenges without compromising the design intent is why I keep coming back.",
-    name: "Elena Rodriguez",
-    role: "Interior Designer",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop"
-  }
+    quote: "Their master specification process leaves zero room for error. The quality of materials and execution is world-class.",
+    name: "Marcus Reed",
+    role: "Real Estate Consultant",
+  },
 ];
 
 export default function TestimonialsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-  
-  // Refs for animated elements
-  const quoteRef = useRef<HTMLHeadingElement>(null);
-  const textRef = useRef<HTMLParagraphElement>(null);
-  const infoRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const animateContent = (direction: 'next' | 'prev', nextIndex: number) => {
-    const tl = gsap.timeline();
-    
-    // 1. Exit Animations (Fade Out & Slide)
-    tl.to([quoteRef.current, textRef.current, infoRef.current], {
-      y: direction === 'next' ? -20 : 20,
-      opacity: 0,
-      duration: 0.3,
-      stagger: 0.05,
-      ease: "power2.in"
-    })
-    .to(imageRef.current, {
-        scale: 0.8,
-        opacity: 0,
-        duration: 0.3
-    }, "<") // Run simultaneously
-    
-    // 2. State Update (Change Content)
-    .call(() => setCurrentIndex(nextIndex))
-    
-    // 3. Entrance Animations (Fade In & Slide)
-    .fromTo([quoteRef.current, textRef.current, infoRef.current], 
-      { y: direction === 'next' ? 20 : -20, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power2.out"
-      }
-    )
-    .fromTo(imageRef.current,
-        { scale: 1.2, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" },
-        "<0.1" // Small overlap
-    );
-  };
-
-  const handleNext = () => {
-    const nextIndex = (currentIndex + 1) % testimonials.length;
-    animateContent('next', nextIndex);
-  };
-
-  const handlePrev = () => {
-    const prevIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-    animateContent('prev', prevIndex);
-  };
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Initial Scroll Trigger Reveal for the whole section
-      gsap.from(containerRef.current!.children, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        },
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out"
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const currentTestimonial = testimonials[currentIndex];
+  // Duplicated for the infinite scrolling loop
+  const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section ref={containerRef} className="w-full bg-white py-24 px-6 md:px-12 relative overflow-hidden">
-      <div className="max-w-[1400px] mx-auto">
+    <section 
+      ref={sectionRef} 
+      className="w-full overflow-hidden bg-[#0A0A0A] py-24 md:py-32"
+    >
+      <div className="mx-auto max-w-[1400px] px-6 md:px-12">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
-          {/* =======================
-              LEFT COLUMN: Static Header
-          ======================== */}
-          <div className="flex flex-col items-start relative z-10">
-            <h2 className="text-4xl md:text-5xl lg:text-[64px] font-medium leading-[1] text-neutral-900 mb-8 tracking-tight">
-              What our great <br/> clients say
+        {/* ── HEADER ── */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-16 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end"
+        >
+          <div className="max-w-2xl">
+            {/* Golden Eyebrow */}
+            <div className="mb-6 flex w-fit items-center gap-3 rounded-full border border-gray-700 bg-black/50 px-4 py-1.5">
+              <div className="h-2 w-2 rounded-full bg-[#D4AF37]" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37]">
+                Client Reviews
+              </span>
+            </div>
+            
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]">
+              What clients say about <br />
+              <span className="text-gray-500 italic">their new spaces.</span>
             </h2>
-            
-            <p className="text-neutral-500 text-lg leading-relaxed mb-10 max-w-md">
-              Hear from those who have trusted us to build their dreams. Our reputation is built on their satisfaction.
+          </div>
+          
+          <div className="max-w-sm">
+            <p className="text-base md:text-lg font-medium leading-relaxed text-gray-400">
+              Real feedback from clients who trusted us to build it right with absolute confidence.
             </p>
-            <Link href="/contact"><button className="bg-black text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-neutral-800 transition-all hover:scale-105 flex items-center gap-2 group shadow-xl">
-              Get a quote 
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button></Link>
-            
           </div>
+        </motion.div>
 
-
-          {/* =======================
-              RIGHT COLUMN: Animated Slider Card
-          ======================== */}
-          <div ref={cardRef} className="relative w-full bg-[#F9F9F9] rounded-3xl p-8 md:p-16 flex items-center shadow-sm min-h-[500px]">
+        {/* ── SPLIT LAYOUT: STATIC IMAGE (Left) & SCROLLING RAIL (Right) ── */}
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-center mt-12">
+          
+          {/* 1. STATIC IMAGE CARD */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full h-[400px] lg:h-[500px] lg:w-[400px] shrink-0 overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl"
+          >
+            <Image
+              src="/slick/slick-4.png"
+              alt="Slick Construction Craftsmanship"
+              fill
+              className="object-cover"
+              unoptimized
+            />
+            {/* Premium Gold Vignette over the static image */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent opacity-90" />
             
-            {/* Background Decor (Subtle Quote Icon) */}
-            <div className="absolute top-8 right-8 text-neutral-200">
-               <Quote size={80} fill="currentColor" strokeWidth={0} />
-            </div>
-
-            {/* Navigation Arrows (Absolute Positioning) */}
-            <button 
-                onClick={handlePrev}
-                className="hidden md:flex absolute left-0 top-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-lg text-neutral-900 z-20 border border-neutral-100"
-            >
-              <ArrowLeft size={20} strokeWidth={1.5} />
-            </button>
-
-            <button 
-                onClick={handleNext}
-                className="hidden md:flex absolute right-0 top-1/2 translate-x-1/2 w-14 h-14 bg-white rounded-full items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-lg text-neutral-900 z-20 border border-neutral-100"
-            >
-              <ArrowRight size={20} strokeWidth={1.5} />
-            </button>
-
-
-            {/* Content Container */}
-            <div className="w-full md:px-8 relative z-10">
-              
-              {/* Dynamic Quote Title */}
-              <h3 ref={quoteRef} className="text-2xl md:text-3xl font-medium text-neutral-900 mb-6 leading-tight">
-                “{currentTestimonial.quote}”
+            <div className="absolute bottom-0 left-0 p-8">
+              <h3 className="text-2xl font-bold text-white mb-1">
+                Built on Trust
               </h3>
-              
-              {/* Dynamic Body Text */}
-              <p ref={textRef} className="text-neutral-500 text-base md:text-lg leading-relaxed mb-10 font-light">
-                {currentTestimonial.text}
+              <p className="text-sm font-medium text-[#D4AF37]">
+                Delivering Excellence
               </p>
-
-              {/* Divider Line */}
-              <div className="w-full h-[1px] bg-neutral-200 mb-8" />
-
-              {/* Dynamic Profile Info */}
-              <div ref={infoRef} className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-full overflow-hidden bg-neutral-200 border border-white shadow-sm">
-                  <img 
-                    ref={imageRef}
-                    src={currentTestimonial.image} 
-                    alt={currentTestimonial.name} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-base font-bold text-neutral-900">{currentTestimonial.name}</span>
-                  <span className="text-sm text-neutral-500">{currentTestimonial.role}</span>
-                </div>
-              </div>
-
-              {/* Mobile Navigation (Visible only on small screens) */}
-              <div className="flex md:hidden gap-4 mt-8">
-                 <button onClick={handlePrev} className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center"><ArrowLeft size={16}/></button>
-                 <button onClick={handleNext} className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center"><ArrowRight size={16}/></button>
-              </div>
-
             </div>
+          </motion.div>
+
+          {/* 2. SCROLLING TESTIMONIALS RAIL (Right to Left) */}
+          <div className="relative flex w-full overflow-hidden rounded-[2rem] lg:h-[500px] items-center">
+            
+            {/* Fade masks for the edges of the scrolling area */}
+            <div className="absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#0A0A0A] to-transparent md:w-32" />
+            <div className="absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#0A0A0A] to-transparent md:w-32" />
+
+            <motion.div
+              className="flex w-max gap-6 px-4"
+              // Moves from 0% to -50%, ensuring a strict Right to Left motion
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                ease: "linear",
+                duration: 35, // Adjust this to make it faster or slower
+                repeat: Infinity,
+              }}
+            >
+              {duplicatedTestimonials.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex h-[350px] w-[300px] shrink-0 flex-col justify-between rounded-3xl bg-[#141414] border border-white/5 p-8 transition-colors hover:border-[#D4AF37]/30 md:h-[400px] md:w-[400px] md:p-10"
+                >
+                  <div>
+                    {/* Gold Decorative Quote Marks */}
+                    <span className="font-serif text-6xl leading-none text-[#D4AF37]/40 block mb-4">
+                      &ldquo;
+                    </span>
+                    <p className="text-base font-medium leading-relaxed text-gray-300 md:text-lg">
+                      {item.quote}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col mt-8 border-t border-white/10 pt-6">
+                    <span className="text-lg font-bold text-white mb-1">
+                      {item.name}
+                    </span>
+                    <span className="text-sm font-semibold uppercase tracking-wider text-[#D4AF37]">
+                      {item.role}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
 
           </div>
-
         </div>
       </div>
     </section>

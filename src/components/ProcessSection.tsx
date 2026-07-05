@@ -1,154 +1,205 @@
 "use client";
 
-import React from 'react';
-import Image from 'next/image'; // <--- Import Image
+import React, { useRef } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 
-const steps = [
+// ─────────────────────────────────────────────────────────────────
+// HIGH-END ARCHITECTURAL CONTENT
+// ─────────────────────────────────────────────────────────────────
+const processes = [
   {
     id: "01",
-    title: "Collaborative Design",
-    subtitle: "Architects, Engineers & Pros",
-    description: "We initiate with a collaborative design review, bringing together architects, engineers, and design professionals to align on a unified vision before ground is broken.",
-    bgClass: "bg-[#F7F5F2]", // Alabaster
-    textClass: "text-neutral-900",
-    borderClass: "border-neutral-200"
+    title: "Architectural Vision",
+    subtitle: "Conceptualization & Alignment",
+    description:
+      "We initiate with a collaborative design review, aligning architects, engineers, and designers. Every foundational detail is scrutinized to lock in a unified vision before any ground is broken.",
+    image: "/website-photos-12.jpg",
   },
   {
     id: "02",
-    title: "Investment & Timeline",
-    subtitle: "Assessment & Estimations",
-    description: "We provide a detailed investment and timeline assessment, outlining precise cost estimates and project duration insights to ensure total transparency.",
-    bgClass: "bg-[#E6E4E0]", // Warm Stone
-    textClass: "text-neutral-900",
-    borderClass: "border-neutral-300"
+    title: "Feasibility & Phasing",
+    subtitle: "Transparent Assessment",
+    description:
+      "Precision is key. We outline exact investment parameters, material logistics, and timeline insights. You receive a complete, transparent roadmap of how your build will unfold.",
+    image: "/website-photos-3.jpg",
   },
   {
     id: "03",
-    title: "Comprehensive Scope",
-    subtitle: "Detailed Documentation",
-    description: "Every detail is accounted for in our comprehensive scope documentation, eliminating ambiguity and ensuring the build adheres strictly to your specifications.",
-    bgClass: "bg-[#D1D5DB]", // Cool Grey
-    textClass: "text-neutral-900",
-    borderClass: "border-neutral-400"
+    title: "Master Specification",
+    subtitle: "Documentation & Sourcing",
+    description:
+      "Leaving zero room for ambiguity. We finalize comprehensive scope documents and source premium materials, ensuring the execution adheres flawlessly to the approved architectural standards.",
+    image: "/website-photos-4.jpg",
   },
   {
     id: "04",
-    title: "Project Management",
-    subtitle: "Seamless Coordination",
-    description: "Our seamless project management provides thoughtful coordination, ensuring minimal disruption to your life and maximum efficiency on the job site.",
-    bgClass: "bg-[#333333]", // Charcoal
-    textClass: "text-white",
-    borderClass: "border-neutral-700"
+    title: "Orchestrated Build",
+    subtitle: "Execution & Site Management",
+    description:
+      "This is where the blueprint breathes. Our on-site project management guarantees seamless coordination between trades, upholding rigorous quality control at every structural milestone.",
+    image: "/website-photos-5.jpg",
   },
   {
     id: "05",
-    title: "Timeless Craftsmanship",
-    subtitle: "The Final Result",
-    description: "The culmination of our process is timeless craftsmanship—delivering a home that stands as a testament to precision, quality, and enduring beauty.",
-    bgClass: "bg-[#0A0A0A]", // Black
-    textClass: "text-white",
-    borderClass: "border-neutral-800"
-  }
+    title: "The Handover",
+    subtitle: "Final Polish & Legacy",
+    description:
+      "The culmination of uncompromising standards. After intensive final walkthroughs and polishing, we deliver a masterful space that stands as a testament to precision and enduring beauty.",
+    image: "/website-photos-6.jpg",
+  },
 ];
 
-export default function ProcessSection() {
+// ─────────────────────────────────────────────────────────────────
+// ANIMATED CARD COMPONENT (With Fixed Mobile Gap)
+// ─────────────────────────────────────────────────────────────────
+const ProcessCard = ({
+  step,
+  index,
+  total,
+  progress,
+}: {
+  step: typeof processes[0];
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) => {
+  const phase = 1 / (total - 1); 
+  const active = index * phase;
+  const enterStart = active - phase;
+  const exitEnd = active + phase;
+
+  // FIX: Changed from "50vw" to "100%". 
+  // This ensures the gap scales perfectly with the card's width, eliminating overlap on mobile.
+  const x = useTransform(
+    progress,
+    [enterStart, active, exitEnd],
+    ["100%", "0%", "-100%"]
+  );
+
+  // The Squeeze Effect
+  const clipPath = useTransform(
+    progress,
+    [enterStart, active, exitEnd],
+    [
+      "inset(0% 40% 0% 40% round 32px)", 
+      "inset(0% 0% 0% 0% round 32px)",   
+      "inset(0% 40% 0% 40% round 32px)", 
+    ]
+  );
+
+  const scale = useTransform(
+    progress, 
+    [enterStart, active, exitEnd], 
+    [0.9, 1, 0.9]
+  );
+  
+  // Smooth fade so text doesn't look harsh when fully squeezed
+  const opacity = useTransform(
+    progress,
+    [enterStart, enterStart + phase / 4, exitEnd - phase / 4, exitEnd],
+    [0, 1, 1, 0]
+  );
+
   return (
-    <section className="w-full bg-white py-24 px-6 md:px-12 relative z-10">
-      <div className="max-w-[1400px] mx-auto">
+    <motion.div
+      style={{
+        x,
+        scale,
+        opacity,
+        clipPath,
+        zIndex: total - index, 
+      }}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] md:w-[85vw] lg:w-[1100px] h-auto md:h-[65vh] min-h-[500px] max-h-[700px] bg-[#141414] border border-white/5 shadow-2xl overflow-hidden flex flex-col md:flex-row transform-gpu"
+    >
+      {/* ── LEFT: IMAGE HALF ── */}
+      <div className="relative w-full md:w-1/2 h-[220px] md:h-full overflow-hidden shrink-0">
+        <Image
+          src={step.image}
+          alt={step.title}
+          fill
+          className="object-cover"
+          unoptimized
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#141414] hidden md:block" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent md:hidden block" />
+      </div>
+
+      {/* ── RIGHT: CONTENT HALF ── */}
+      {/* Reduced padding on mobile (p-6) so text has more room to breathe */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center p-6 md:p-12 lg:p-16 relative">
         
-        {/* =======================
-            HEADER
-        ======================== */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl lg:text-[64px] font-medium text-neutral-900 mb-6 leading-[1] tracking-tight">
-              A process built on <br/>
-              <span className="text-neutral-400">precision & trust.</span>
-            </h2>
-            <p className="text-neutral-500 text-lg leading-relaxed max-w-lg">
-              Whether you’re building a luxurious custom home or transforming your existing space to better reflect
-your lifestyle, Pivotal Builders is your trusted partner every step of the way.
-            </p>
-          </div>
+        <div className="flex items-center gap-4 mb-6 md:mb-8">
+          <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white/5 tracking-tighter select-none">
+            .{step.id}
+          </span>
+          <div className="h-[1px] flex-1 bg-gradient-to-r from-[#D4AF37]/50 to-transparent max-w-[100px]" />
         </div>
 
+        {/* Adjusted text sizes for mobile wrapping */}
+        <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-2 md:mb-3 leading-[1.1]">
+          {step.title}
+        </h3>
+        
+        <h4 className="text-xs md:text-sm lg:text-base font-semibold uppercase tracking-widest text-[#D4AF37] mb-4 md:mb-8">
+          {step.subtitle}
+        </h4>
 
-        {/* =======================
-            CONTENT GRID
-        ======================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative">
-          
-          {/* LEFT: Sticky Image Column (Span 5) */}
-          <div className="hidden lg:block lg:col-span-5 relative">
-              <div className="sticky top-12 h-[calc(100vh-6rem)] flex items-center justify-center py-8">
-                 <div className="w-full h-full max-h-[700px] rounded-2xl overflow-hidden shadow-2xl relative group">
-                    {/* OPTIMIZED IMAGE */}
-                    <Image 
-                      src="/website-photos-12.jpg" // Renamed from "Website Photos -12.jpg"
-                      alt="Architectural Blueprint Meeting" 
-                      fill
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                      unoptimized={true}
-                    />
-                    <div className="absolute inset-0 bg-black/10"></div>
-                    
-                    {/* Optional Overlay Text */}
-                    <div className="absolute bottom-8 left-8 text-white max-w-xs z-10">
-                       <p className="font-mono text-xs uppercase tracking-widest opacity-80 mb-2">The Standard</p>
-                       <p className="text-xl font-medium">Built for perfection.</p>
-                    </div>
-                 </div>
-              </div>
+        <p className="text-sm md:text-base lg:text-lg text-gray-400 font-medium leading-relaxed max-w-md">
+          {step.description}
+        </p>
+        
+      </div>
+    </motion.div>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────────
+// MAIN SECTION
+// ─────────────────────────────────────────────────────────────────
+export default function ProcessSection() {
+  const targetRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end end"],
+  });
+
+  return (
+    <section ref={targetRef} className="relative h-[600vh] bg-[#0A0A0A]">
+      
+      {/* ── STICKY VIEWPORT ── */}
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+        
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-0">
+          <div className="h-[50vh] w-[50vw] bg-[#D4AF37]/5 rounded-full blur-[140px]" />
+        </div>
+
+        {/* ── STATIC HEADER ── */}
+        <div className="absolute top-8 left-4 md:top-16 md:left-12 z-50">
+          <div className="mb-3 md:mb-4 flex items-center gap-2 md:gap-3 rounded-full border border-gray-700 bg-black/50 backdrop-blur-sm px-3 md:px-4 py-1.5 w-fit">
+            <div className="h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-[#D4AF37]" />
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-gray-300 uppercase">
+              The Methodology
+            </span>
           </div>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white leading-tight">
+            A process built on <br />
+            <span className="text-gray-500 italic">precision & trust.</span>
+          </h2>
+        </div>
 
-
-          {/* RIGHT: Stacking Cards (Span 7) */}
-          <div className="lg:col-span-7 flex flex-col gap-8 pb-24">
-            {steps.map((step, index) => (
-              <div 
-                key={index}
-                className={`sticky top-32 lg:top-40 w-full ${step.bgClass} ${step.textClass} p-12 md:p-16 rounded-3xl shadow-xl border ${step.borderClass} transform transition-all duration-500 hover:-translate-y-2`}
-                style={{ 
-                    // Subtle rotation for the "stack" feel
-                    transform: `rotate(${index % 2 === 0 ? '-0.5deg' : '0.5deg'})` 
-                }}
-              >
-                <div className="flex flex-col h-full justify-between gap-16 min-h-[300px]">
-                  
-                  {/* Card Header */}
-                  <div className="flex justify-between items-start">
-                      <div>
-                         <span className="block font-mono text-xs uppercase tracking-widest opacity-60 mb-3">
-                            Step {step.id}
-                         </span>
-                         <h3 className="text-3xl md:text-5xl font-medium tracking-tight leading-tight">
-                            {step.title}
-                         </h3>
-                         {step.subtitle && (
-                            <p className="text-lg md:text-xl opacity-60 mt-2 font-light">
-                               {step.subtitle}
-                            </p>
-                         )}
-                      </div>
-                      
-                      {/* Decorative Icon or Number */}
-                      <div className="hidden md:flex w-14 h-14 rounded-full border border-current opacity-20 items-center justify-center text-xl font-serif italic">
-                         {index + 1}
-                      </div>
-                   </div>
-                   
-                   {/* Card Body */}
-                   <div className="max-w-xl">
-                      <p className="text-lg md:text-2xl font-light leading-relaxed opacity-90">
-                         {step.description}
-                      </p>
-                   </div>
-
-                </div>
-              </div>
-            ))}
-          </div>
-
+        {/* ── CENTRAL STAGE FOR ANIMATED CARDS ── */}
+        <div className="relative w-full h-full z-10 pt-24 md:pt-20">
+          {processes.map((step, index) => (
+            <ProcessCard
+              key={step.id}
+              step={step}
+              index={index}
+              total={processes.length}
+              progress={scrollYProgress}
+            />
+          ))}
         </div>
 
       </div>

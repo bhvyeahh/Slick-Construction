@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 // import Navbar from "@/components/Navbar";
 import ProcessSection from "@/components/ProcessSection";
 import PropertyListing from "@/components/PropertyListing";
-import RecentProjects from "@/components/RecentProjects";
+import CraftsmanshipSection from "@/components/CraftsmanshipSection";
 import ServicesAccordion from "@/components/ServicesAccordion";
 import StatsAboutSection from "@/components/StatsAboutSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -21,7 +21,7 @@ export default function Home() {
     <TextRevealSection />
     <ServicesAccordion />
     <PropertyListing />
-    <RecentProjects />
+    <CraftsmanshipSection />
     <CTASection />
     <ProcessSection />
     <TestimonialsSection  />

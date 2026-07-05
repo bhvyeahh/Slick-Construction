@@ -1,18 +1,20 @@
 "use client";
 
-import { useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 
+// ─────────────────────────────────────────────────────────────────
+// PROPERTY DATA
+// ─────────────────────────────────────────────────────────────────
 const properties = [
   {
     id: 1,
     title: "Hillside View House",
-    price: "$9,200",
+    price: "$9,200/mo",
     beds: "4+",
     baths: "3",
     sqft: "2,400",
-    status: "For Rent",
     image: "/website-photos-3.jpg",
   },
   {
@@ -22,7 +24,6 @@ const properties = [
     beds: "3",
     baths: "2",
     sqft: "3,100",
-    status: "For Buy",
     image: "/website-photos-4.jpg",
   },
   {
@@ -32,7 +33,6 @@ const properties = [
     beds: "3",
     baths: "2",
     sqft: "980",
-    status: "For Buy",
     image: "/website-photos-5.jpg",
   },
   {
@@ -42,162 +42,194 @@ const properties = [
     beds: "4+",
     baths: "3",
     sqft: "4,200",
-    status: "For Buy",
     image: "/website-photos-6.jpg",
   },
 ];
 
-export default function PropertyListing() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+// ─────────────────────────────────────────────────────────────────
+// STACKING & SCATTERING CARD COMPONENT
+// ─────────────────────────────────────────────────────────────────
+const CinematicCard = ({
+  property,
+  index,
+  total,
+  progress,
+}: {
+  property: typeof properties[0];
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) => {
+  // 1. Scatter Destinations (Where they fly off to at the very end)
+  const scatterDestinations = [
+    { x: "-35vw", y: "-35vh", rotate: -15 }, // Top Left
+    { x: "35vw", y: "-35vh", rotate: 12 },   // Top Right
+    { x: "-35vw", y: "35vh", rotate: -10 },  // Bottom Left
+    { x: "35vw", y: "35vh", rotate: 18 },    // Bottom Right
+  ];
+  const dest = scatterDestinations[index];
 
-  // Animation variants for staggered card reveal
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
+  // 2. Programmatic Timeline Generation for the Stacking Effect
+  const timeline: number[] = [];
+  const scaleValues: number[] = [];
+  const yValues: string[] = [];
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
+  // Define entry behavior
+  if (index === 0) {
+    timeline.push(0);
+    scaleValues.push(1);
+    yValues.push("0vh");
+  } else {
+    // Card stays hidden at bottom, slides up to 0vh when it's its turn
+    timeline.push(0, (index - 1) * 0.25 + 0.1, index * 0.25);
+    scaleValues.push(1, 1, 1);
+    yValues.push("100vh", "100vh", "0vh");
+  }
+
+  // Define stacking behavior (when NEW cards cover this one)
+  for (let i = index + 1; i < total; i++) {
+    timeline.push(i * 0.25);
+    // Scales down by 4% and moves up by 4vh for each card stacked on top of it
+    scaleValues.push(1 - (i - index) * 0.04);
+    yValues.push(`-${(i - index) * 4}vh`);
+  }
+
+  // Define scatter finale behavior
+  timeline.push(0.85, 1.0);
+  const lastScale = scaleValues[scaleValues.length - 1];
+  const lastY = yValues[yValues.length - 1];
+  
+  scaleValues.push(lastScale, 0.25);
+  yValues.push(lastY, dest.y);
+
+  // 3. Map the generated timeline arrays to useTransform
+  const y = useTransform(progress, timeline, yValues);
+  const scale = useTransform(progress, timeline, scaleValues);
+  
+  // X, Rotate, and Opacity only change during the scatter phase (t === 1.0)
+  const x = useTransform(progress, timeline, timeline.map((t) => (t >= 1.0 ? dest.x : "0vw")));
+  const rotate = useTransform(progress, timeline, timeline.map((t) => (t >= 1.0 ? dest.rotate : 0)));
+  const opacity = useTransform(progress, timeline, timeline.map((t) => (t >= 1.0 ? 0 : 1)));
 
   return (
-    <section className="w-full bg-richblack py-24 md:py-32" ref={containerRef}>
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
+    <motion.div
+      style={{
+        y,
+        x,
+        scale,
+        rotate,
+        opacity,
+        zIndex: 10 + index, // Ensures strict stacking order
+      }}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] h-[95vh] overflow-hidden rounded-[2rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-[#141414] transform-gpu origin-center"
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0 w-full h-full">
+        <Image
+          src={property.image}
+          alt={property.title}
+          fill
+          className="object-cover"
+          unoptimized
+        />
+      </div>
+
+      {/* Heavy Cinematic Vignettes for flawless text readability */}
+      <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/50 to-transparent opacity-95 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/40 via-transparent to-transparent opacity-80 pointer-events-none" />
+
+      {/* Top Header - Eyebrow */}
+      <div className="absolute top-8 left-6 md:top-12 md:left-12 z-20 flex items-center gap-3">
+        <div className="h-2 w-2 rounded-full bg-[#D4AF37] animate-pulse" />
+        <span className="text-xs md:text-sm font-bold tracking-[0.2em] text-[#D4AF37] uppercase drop-shadow-md">
+          Exclusive Listings
+        </span>
+      </div>
+
+      {/* Main Content (Bottom Left) */}
+      <div className="absolute bottom-0 left-0 w-full flex flex-col justify-end p-8 md:p-12 lg:p-16 z-20">
         
-        {/* ── HEADER ── */}
-        <div className="mb-16 flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-          <div className="w-full md:w-1/2">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]"
-            >
-              Discover homes <br />
-              {/* Updated to vibrant gold to match the new image */}
-              <span className="text-gold">that fit your lifestyle</span>
-            </motion.h2>
-          </div>
+        <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter text-white leading-[0.95] mb-6 drop-shadow-2xl max-w-4xl">
+          {property.title}
+        </h2>
+        
+        <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-12">
+          <span className="text-3xl md:text-5xl font-medium text-[#D4AF37] drop-shadow-lg">
+            {property.price}
+          </span>
           
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full flex flex-col items-start md:items-end md:w-1/3"
-          >
-            <p className="mb-6 text-lg text-gray-400 font-medium md:text-right">
-              Explore a range of properties built for comfort, location, and everyday living.
-            </p>
-            <button className="group flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-all hover:bg-gray-200">
-              Explore All
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </button>
-          </motion.div>
+          <div className="hidden md:block h-10 w-[1px] bg-white/30" />
+
+          {/* Specs */}
+          <div className="flex flex-wrap items-center gap-5 text-sm md:text-lg font-medium text-gray-300 pb-1">
+            <div className="flex items-center gap-2">
+              <span className="text-[#D4AF37]">Beds:</span> {property.beds}
+            </div>
+            <span className="text-white/20">•</span>
+            <div className="flex items-center gap-2">
+              <span className="text-[#D4AF37]">Baths:</span> {property.baths}
+            </div>
+            <span className="text-white/20">•</span>
+            <div className="flex items-center gap-2">
+              <span className="text-[#D4AF37]">Area:</span> {property.sqft} sq ft
+            </div>
+          </div>
         </div>
 
-        {/* ── PROPERTY GRID ── */}
+      </div>
+    </motion.div>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────────
+// MAIN SECTION
+// ─────────────────────────────────────────────────────────────────
+export default function PropertyListing() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // 500vh ensures a long, dramatic scroll track for the 4 cards to stack beautifully.
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // The text revealed underneath the scatter effect
+  const revealScale = useTransform(scrollYProgress, [0.8, 1], [0.8, 1]);
+  const revealOpacity = useTransform(scrollYProgress, [0.75, 0.9], [0, 1]);
+
+  return (
+    <section ref={containerRef} className="relative h-[500vh] bg-[#0A0A0A]">
+      
+      {/* The sticky theater screen base */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#0A0A0A] flex items-center justify-center">
+        
+        {/* ── THE REVEAL TEXT (Hidden behind the cards until they scatter) ── */}
         <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 gap-6 md:grid-cols-2"
+          style={{ scale: revealScale, opacity: revealOpacity }}
+          className="absolute inset-0 z-0 flex flex-col items-center justify-center text-center px-6"
         >
-          {properties.map((property) => (
-            <motion.div
-              key={property.id}
-              variants={cardVariants}
-              className="group relative h-[420px] w-full overflow-hidden rounded-[2rem] bg-charcoal cursor-pointer"
-            >
-              {/* Image Background */}
-              <div className="absolute inset-0 h-full w-full">
-                <Image
-                  src={property.image}
-                  alt={property.title}
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                  unoptimized
-                />
-                {/* Premium Frosted Glass / Foggy Blur Overlay */}
-<div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#050505]/90 via-[#050505]/40 to-transparent pointer-events-none backdrop-blur-sm [mask-image:linear-gradient(to_top,black_50%,transparent_100%)]" />
-              </div>
-
-              {/* Status Badge */}
-              <div className="absolute top-6 right-6 z-20 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-md transition-colors group-hover:border-white/40 group-hover:bg-white/20">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-                {property.status}
-              </div>
-
-              {/* ── TEXT CONTENT (Sitting directly over the gradient) ── */}
-              <div className="absolute bottom-0 left-0 right-0 flex flex-col p-6 md:p-8 z-10">
-                
-                <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
-                  <h3 className="mb-1 text-base font-medium text-gray-300">
-                    {property.title}
-                  </h3>
-                  <span className="mb-4 block text-3xl font-bold tracking-tight text-white">
-                    {property.price}
-                  </span>
-                  
-                  {/* Property Specs */}
-                  <div className="flex items-center gap-3 text-sm font-medium text-gray-400">
-                    
-                    <div className="flex items-center gap-1.5">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 text-gold-muted">
-                        <path d="M3 14h18" />
-                        <path d="M4 14v7" />
-                        <path d="M20 14v7" />
-                        <path d="M4 14a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2" />
-                        <path d="M6 10V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" />
-                      </svg>
-                      {property.beds}
-                    </div>
-                    
-                    <span className="text-gray-600">|</span>
-                    
-                    <div className="flex items-center gap-1.5">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 text-gold-muted">
-                        <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" />
-                        <line x1="10" y1="5" x2="8" y2="7" />
-                        <line x1="2" y1="12" x2="22" y2="12" />
-                        <line x1="7" y1="19" x2="7" y2="21" />
-                        <line x1="17" y1="19" x2="17" y2="21" />
-                      </svg>
-                      {property.baths}
-                    </div>
-
-                    <span className="text-gray-600">|</span>
-                    
-                    <div className="flex items-center gap-1.5">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 text-gold-muted">
-                        <path d="M4 4h16v16H4z" />
-                        <path d="M4 14h4v6" />
-                        <path d="M14 4v6h6" />
-                      </svg>
-                      {property.sqft} sq ft
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              
-            </motion.div>
-          ))}
+          <div className="h-40 w-40 absolute bg-[#D4AF37]/10 blur-[100px] rounded-full" />
+          <h3 className="relative z-10 text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight">
+            Find your next <br />
+            <span className="text-[#D4AF37] italic">masterpiece.</span>
+          </h3>
+          <button className="relative z-10 mt-10 px-8 py-4 rounded-full bg-[#D4AF37] text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors duration-300 shadow-lg">
+            View All Properties
+          </button>
         </motion.div>
+
+        {/* ── THE PROPERTIES (Stacking & Scattering) ── */}
+        {properties.map((property, index) => (
+          <CinematicCard
+            key={property.id}
+            property={property}
+            index={index}
+            total={properties.length}
+            progress={scrollYProgress}
+          />
+        ))}
+        
       </div>
     </section>
   );
