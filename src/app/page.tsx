@@ -11,6 +11,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import TextRevealSection from "@/components/TextRevealSection";
 import { Stats } from "fs";
 import Image from "next/image";
+import ScrollVideoSection from "@/components/ScrollVideoSection";
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
     <ServicesAccordion />
     <PropertyListing />
     <CraftsmanshipSection />
-    <CTASection />
+    <ScrollVideoSection />
     <ProcessSection />
     <TestimonialsSection  />
     <Footer />

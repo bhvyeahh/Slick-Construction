@@ -14,8 +14,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Pivotal Builders",
-  description: "Your pivotal partner in building what matters.",
+  title: "Slick Construction",
+  description: "Slick Nick",
   icons: {
     icon: "/icon.png", 
     shortcut: "/icon.png",
