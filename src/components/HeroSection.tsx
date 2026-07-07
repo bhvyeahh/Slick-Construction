@@ -105,31 +105,7 @@ const fogOpacity = useTransform(
     <main ref={containerRef} className="relative h-[250vh] w-full">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-gradient-to-b from-[#bfe3f7] to-[#d8edf9]">
         {/* ── NAVBAR ── z-[100] */}
-        <header className="absolute top-0 left-0 right-0 z-[100] flex w-full items-center justify-between px-6 py-6 md:px-12">
-          <div className="flex items-center gap-2 font-bold text-2xl tracking-tight text-black">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-              <path d="M12 2L2 12h3v8h14v-8h3L12 2zm0 2.83l7 7V20H5v-8.17l7-7z" />
-            </svg>
-            Slick
-          </div>
-          <nav className="hidden gap-8 text-sm font-medium text-gray-900 md:flex">
-            <Link href="#properties" className="hover:text-black">
-              PROPERTIES
-            </Link>
-            <Link href="#services" className="hover:text-black">
-              SERVICES
-            </Link>
-            <Link href="#about" className="hover:text-black">
-              ABOUT
-            </Link>
-          </nav>
-          <button className="flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition-transform hover:scale-105">
-            Contact us
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-black">
-              →
-            </span>
-          </button>
-        </header>
+        
 
         {/* ── SIDE CLOUD LEFT ── z-10 */}
         <motion.div
@@ -164,18 +140,9 @@ const fogOpacity = useTransform(
           style={{ y: textY, opacity: textOpacity, scale: textScale }}
           className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 pt-[80px]"
         >
-          <div className="mb-6 flex items-center gap-2 rounded-full bg-white/40 px-4 py-1.5 backdrop-blur-md border border-white/20 shadow-sm">
-            <div className="flex -space-x-2">
-              <div className="h-6 w-6 rounded-full bg-gray-300 border-2 border-white" />
-              <div className="h-6 w-6 rounded-full bg-gray-400 border-2 border-white" />
-              <div className="h-6 w-6 rounded-full bg-gray-500 border-2 border-white" />
-            </div>
-            <span className="text-sm font-medium text-gray-800">
-              3,500+ Pro Users
-            </span>
-          </div>
+          
 
-          <h1 className="max-w-5xl text-6xl font-extrabold tracking-tight text-gray-900 sm:text-6xl md:text-8xl lg:text-[110px] leading-none">
+          <h1 className="max-w-5xl text-6xl font-extrabold tracking-tight text-gray-900 sm:text-6xl md:text-8xl lg:text-[100px] leading-none">
              Slick Construction
           </h1>
 

@@ -37,9 +37,9 @@ export default function Footer() {
           
           {/* 1. Logo & Vision (Spans 4 columns) */}
           <div className="lg:col-span-4 flex flex-col items-start gap-8">
-            <div className="relative w-16 h-16 md:w-24 md:h-24 flex-shrink-0">
+            <div className="relative w-16 h-16 md:w-34 md:h-24 flex-shrink-0">
               <Image 
-                src="/slick/slick-5.png" 
+                src="/slick/slick-logo.png" 
                 alt="Slick Construction Symbol" 
                 fill
                 className="object-contain"
@@ -96,7 +96,7 @@ export default function Footer() {
             
             <div className="border border-white/10 bg-white/5 px-6 py-3 rounded-md backdrop-blur-sm">
               <h3 className="text-xl md:text-2xl font-mono font-bold text-white tracking-widest">
-                CA LIC 1123494
+                CA LIC 1044915
               </h3>
             </div>
 
