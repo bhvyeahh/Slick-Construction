@@ -33,7 +33,7 @@ const properties = [
     beds: "3",
     baths: "2",
     sqft: "980",
-    image: "/Slick/slick-25.png",
+    image: "/slick/slick-25.png",
   },
   {
     id: 4,

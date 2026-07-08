@@ -14,7 +14,7 @@ const processes = [
     subtitle: "Conceptualization & Alignment",
     description:
       "We initiate with a collaborative design review, aligning architects, engineers, and designers. Every foundational detail is scrutinized to lock in a unified vision before any ground is broken.",
-    image: "/Slick/slick-31.png",
+    image: "/slick/slick-31.png",
   },
   {
     id: "02",
@@ -22,7 +22,7 @@ const processes = [
     subtitle: "Transparent Assessment",
     description:
       "Precision is key. We outline exact investment parameters, material logistics, and timeline insights. You receive a complete, transparent roadmap of how your build will unfold.",
-    image: "/Slick/slick-12.png",
+    image: "/slick/slick-12.png",
   },
   {
     id: "03",
@@ -30,7 +30,7 @@ const processes = [
     subtitle: "Documentation & Sourcing",
     description:
       "Leaving zero room for ambiguity. We finalize comprehensive scope documents and source premium materials, ensuring the execution adheres flawlessly to the approved architectural standards.",
-    image: "/Slick/slick-23.png",
+    image: "/slick/slick-23.png",
   },
   {
     id: "04",
@@ -38,7 +38,7 @@ const processes = [
     subtitle: "Execution & Site Management",
     description:
       "This is where the blueprint breathes. Our on-site project management guarantees seamless coordination between trades, upholding rigorous quality control at every structural milestone.",
-    image: "/Slick/slick-15.png",
+    image: "/slick/slick-15.png",
   },
   {
     id: "05",
@@ -46,7 +46,7 @@ const processes = [
     subtitle: "Final Polish & Legacy",
     description:
       "The culmination of uncompromising standards. After intensive final walkthroughs and polishing, we deliver a masterful space that stands as a testament to precision and enduring beauty.",
-    image: "/Slick/slick-6.png",
+    image: "/slick/slick-6.png",
   },
 ];
 
