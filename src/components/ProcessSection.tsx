@@ -119,7 +119,7 @@ const ProcessCard = ({
           alt={step.title}
           fill
           className="object-cover"
-          unoptimized
+           
         />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#141414] hidden md:block" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent md:hidden block" />

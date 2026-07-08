@@ -144,7 +144,7 @@ export default function ServicesList() {
                     fill
                     className="object-cover transition-transform duration-[2s] hover:scale-105"
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                    unoptimized // Prevents Next.js aggressive lazy loading blur issues
+                      // Prevents Next.js aggressive lazy loading blur issues
                   />
                   {/* Subtle glass overlay to blend perfectly with dark theme */}
                   <div className="absolute inset-0 bg-black/10 pointer-events-none" />

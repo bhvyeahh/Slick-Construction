@@ -147,7 +147,7 @@ export default function ServicesAccordion() {
                           alt={service.title}
                           fill
                           className="object-cover object-bottom"
-                          unoptimized
+                           
                         />
                         {/* Gradient to blend image into the dark background */}
                         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#050505]" />

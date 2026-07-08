@@ -72,7 +72,7 @@ export default function Navbar() {
               fill
               className="object-contain drop-shadow-md"
               priority
-              unoptimized
+               
             />
           </Link>
 
@@ -124,7 +124,7 @@ export default function Navbar() {
                     alt="Logo" 
                     fill
                     className="object-contain"
-                    unoptimized
+                     
                   />
                 </div>
               </div>

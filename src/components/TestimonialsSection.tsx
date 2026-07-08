@@ -92,7 +92,7 @@ export default function TestimonialsSection() {
               alt="Slick Construction Craftsmanship"
               fill
               className="object-cover"
-              unoptimized
+               
             />
             {/* Premium Gold Vignette over the static image */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent opacity-90" />

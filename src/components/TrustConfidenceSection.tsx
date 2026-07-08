@@ -91,7 +91,7 @@ export default function TrustConfidenceSection() {
             {/* Bottom CTA Card */}
             <div className="relative bg-gray-200 rounded-[2rem] p-6 overflow-hidden min-h-[220px] flex flex-col justify-between group">
               <div className="absolute inset-0 z-0">
-                <Image src="/slick/slick-5.png" alt="Background" fill className="object-cover opacity-30 mix-blend-multiply" unoptimized />
+                <Image src="/slick/slick-5.png" alt="Background" fill className="object-cover opacity-30 mix-blend-multiply"   />
                 <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/60" />
               </div>
               
@@ -122,7 +122,7 @@ export default function TrustConfidenceSection() {
               alt="Nick - Owner" 
               fill 
               className="object-cover object-center"
-              unoptimized
+               
             />
             {/* Cinematic bottom gradient for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
@@ -177,7 +177,7 @@ export default function TrustConfidenceSection() {
                       alt={`Gallery image ${idx}`} 
                       fill 
                       className="object-cover" 
-                      unoptimized 
+                        
                     />
                   </div>
                 ))}

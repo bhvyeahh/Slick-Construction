@@ -80,7 +80,7 @@ export default function AboutHeroSection() {
                 alt="Modern Home Exterior" 
                 fill
                 className="object-cover"
-                unoptimized
+                 
               />
             </motion.div>
           </div>
@@ -92,7 +92,7 @@ export default function AboutHeroSection() {
                 alt="Luxury A-Frame Home" 
                 fill
                 className="object-cover"
-                unoptimized
+                 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
           </motion.div>
@@ -104,7 +104,7 @@ export default function AboutHeroSection() {
               alt="Modern Home Exterior" 
               fill
               className="object-cover"
-              unoptimized
+               
             />
           </motion.div>
 

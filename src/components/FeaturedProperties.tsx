@@ -25,7 +25,7 @@ const ParallaxImage = ({ src, alt }: { src: string; alt: string }) => {
           alt={alt}
           fill
           className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-          unoptimized
+           
         />
       </motion.div>
       

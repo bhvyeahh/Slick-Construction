@@ -130,7 +130,7 @@ const CinematicCard = ({
           alt={property.title}
           fill
           className="object-cover"
-          unoptimized
+           
         />
       </div>
 

@@ -69,7 +69,7 @@ export default function CTASection() {
               alt="Structural Rigor"
               fill
               className="object-cover opacity-40 mix-blend-luminosity"
-              unoptimized
+               
             />
             <div className="absolute inset-0 bg-black/60" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_80%)]" />
@@ -129,7 +129,7 @@ export default function CTASection() {
               alt="Craftsmanship Process"
               fill
               className="object-contain md:object-right"
-              unoptimized
+               
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent" />
           </motion.div>
@@ -159,7 +159,7 @@ export default function CTASection() {
               alt="Start Your Project"
               fill
               className="object-contain md:object-left"
-              unoptimized
+               
             />
             <div className="absolute inset-0 bg-gradient-to-l from-black via-transparent to-transparent" />
           </motion.div>

@@ -117,7 +117,7 @@ export default function CraftsmanshipSection() {
                                     alt={principle.title}
                                     fill
                                     className="object-cover"
-                                    unoptimized
+                                     
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-richblack/80 via-transparent to-transparent opacity-80" />
                                 </div>
@@ -170,7 +170,7 @@ export default function CraftsmanshipSection() {
                   alt={principles[activeIndex].title}
                   fill
                   className="object-cover"
-                  unoptimized
+                   
                 />
                 {/* Premium Dark Vignette over the image */}
                 <div className="absolute inset-0 bg-gradient-to-t from-richblack/80 via-transparent to-transparent opacity-80" />

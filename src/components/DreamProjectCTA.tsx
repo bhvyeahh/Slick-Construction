@@ -74,7 +74,7 @@ export default function DreamProjectCTA()  {
                   fill
                   className="object-cover transition-transform duration-[2s] group-hover:scale-110"
                   sizes="(max-width: 768px) 50vw, 33vw"
-                  unoptimized
+                   
                 />
                 {/* Subtle dark overlay that lifts on hover */}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />

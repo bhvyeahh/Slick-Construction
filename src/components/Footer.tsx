@@ -43,7 +43,7 @@ export default function Footer() {
                 alt="Slick Construction Symbol" 
                 fill
                 className="object-contain"
-                unoptimized
+                 
               />
             </div>
             <p className="text-gray-400 font-medium text-lg leading-relaxed max-w-sm">
