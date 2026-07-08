@@ -9,25 +9,25 @@ const services = [
     id: "01",
     category: "Full Remodel",
     title: "Full Home Remodel",
-    image: "/website-photos-3.jpg",
+    image: "/slick/slick-6.png",
   },
   {
     id: "02",
     category: "Kitchens",
     title: "Kitchen Remodel",
-    image: "/website-photos-4.jpg",
+    image: "/slick/slick-25.png",
   },
   {
     id: "03",
     category: "Bathrooms",
     title: "Bathroom Remodel",
-    image: "/website-photos-5.jpg",
+    image: "/slick/slick-2.png",
   },
   {
     id: "04",
     category: "Extensions",
     title: "ADU Builds",
-    image: "/website-photos-6.jpg",
+    image: "/slick/slick-12.png",
   },
 ];
 

@@ -10,21 +10,21 @@ import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 const properties = [
   {
     id: 1,
-    title: "Hillside View House",
+    title: "Green Street",
     price: "$9,200/mo",
     beds: "4+",
     baths: "3",
     sqft: "2,400",
-    image: "/website-photos-3.jpg",
+    image: "/Green-Street/green-4.png",
   },
   {
     id: 2,
-    title: "Modern Hillside Home",
+    title: "Mission Street",
     price: "$58,000",
     beds: "3",
     baths: "2",
     sqft: "3,100",
-    image: "/website-photos-4.jpg",
+    image: "/Mission-Street/mission-1.png",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const properties = [
     beds: "3",
     baths: "2",
     sqft: "980",
-    image: "/website-photos-5.jpg",
+    image: "/Slick/slick-25.png",
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const properties = [
     beds: "4+",
     baths: "3",
     sqft: "4,200",
-    image: "/website-photos-6.jpg",
+    image: "/Mission-Street/mission-3.png",
   },
 ];
 
@@ -199,6 +199,7 @@ export default function PropertyListing() {
   const revealOpacity = useTransform(scrollYProgress, [0.75, 0.9], [0, 1]);
 
   return (
+    // Change here for card
     <section ref={containerRef} className="relative h-[500vh] bg-[#0A0A0A]">
       
       {/* The sticky theater screen base */}

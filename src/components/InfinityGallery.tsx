@@ -50,7 +50,7 @@ export default function InfinityGallery() {
   const renderCinematic = mounted && isDesktop && viewMode === "cinematic";
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-[#0A0A0A] min-h-screen pt-24 overflow-x-hidden">
+    <section ref={sectionRef} className="relative w-full bg-[#0A0A0A] min-h-screen pt-24">
       
       {/* ── HEADER & TOGGLE BUTTON ── */}
       <div className="sticky top-24 z-50 max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pointer-events-none mb-12">
@@ -99,7 +99,7 @@ export default function InfinityGallery() {
 // SUB-COMPONENT 1: THE SMOOTH BENTO GRID
 // ─────────────────────────────────────────────────────────────────
 function BentoGallery() {
-  const itemVariants : Variants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 50, scale: 0.95 },
     visible: { 
       opacity: 1, 
@@ -110,7 +110,7 @@ function BentoGallery() {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto px-6 md:px-12 pb-32 pt-8 overflow-hidden">
+    <div className="max-w-[1400px] mx-auto px-6 md:px-12 pb-32 pt-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {galleryImages.map((src, idx) => {
           // Dynamic bento layout mapping
@@ -190,7 +190,7 @@ function CinematicExperience() {
   const finalTextY = useTransform(scrollYProgress, [0.9, 0.98], ["40px", "0px"]);
 
   return (
-    <div ref={containerRef} className="relative h-[700vh] bg-[#0A0A0A] -mt-32 overflow-x-hidden">
+    <div ref={containerRef} className="relative h-[700vh] bg-[#0A0A0A] -mt-32">
       
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center perspective-[1200px]">
         

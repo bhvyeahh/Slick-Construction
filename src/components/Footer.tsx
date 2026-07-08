@@ -70,19 +70,19 @@ export default function Footer() {
               Headquarters
             </span>
             <div className="flex flex-col gap-4">
-              <a href="tel:4156109225" className="group flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+              <a href="tel:4159409199" className="group flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
                 <Phone size={16} className="text-gray-500 group-hover:text-[#D4AF37] transition-colors" />
-                <span className="text-lg font-medium">(415) 610-9225</span>
+                <span className="text-lg font-medium">(415) 940 9199</span>
               </a>
-              <a href="mailto:info@pivotalbuildersinc.com" className="group flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+              <a href="mailto:office@slickconstructionsf.com" className="group flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
                 <Mail size={16} className="text-gray-500 group-hover:text-[#D4AF37] transition-colors" />
-                <span className="text-lg font-medium">info@pivotalbuildersinc.com</span>
+                <span className="text-lg font-medium">office@slickconstructionsf.com</span>
               </a>
               <div className="flex items-start gap-3 text-gray-300 mt-2">
                 <MapPin size={16} className="text-gray-500 mt-1" />
                 <p className="text-lg font-medium leading-snug">
-                  2560 Geary Blvd, Unit 204 <br/>
-                  San Francisco, CA
+                  1422 16th Ave 94122 <br/>
+                  San Francisco, CA. USA
                 </p>
               </div>
             </div>

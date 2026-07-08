@@ -11,21 +11,21 @@ const principles = [
     title: "Precision Engineering",
     description:
       "Every joint, measurement, and foundation is calculated with absolute accuracy. We don't rely on guesswork; we build with mathematical precision to ensure absolute structural longevity.",
-    image: "/website-photos-21.jpg",
+    image: "/Slick/slick-11.png",
   },
   {
     id: "02",
     title: "Curated Materials",
     description:
       "We source only the highest caliber materials. From exotic hardwoods to premium stone and industrial-grade steel, our selections are designed to age beautifully and withstand the test of time.",
-    image: "/website-photos-22.jpg",
+    image: "/Slick/slick-29.png",
   },
   {
     id: "03",
     title: "Timeless Architecture",
     description:
       "Trends fade, but true craftsmanship endures. We blend modern sensibilities with classic architectural principles to create spaces that remain striking and relevant for generations.",
-    image: "/website-photos-31.jpg",
+    image: "/Slick/slick-13.png",
   },
 ];
 
