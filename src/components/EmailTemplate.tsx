@@ -28,7 +28,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
       {/* Hero Header - Black Brand Background */}
       <div style={{ backgroundColor: '#000000', padding: '35px 40px', textAlign: 'center' }}>
         <h1 style={{ color: '#ffffff', fontSize: '24px', fontWeight: '700', margin: '0', letterSpacing: '2px', textTransform: 'uppercase' }}>
-          Pivotal Builders
+          Slick Construction
         </h1>
         <p style={{ color: '#888888', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '3px', margin: '10px 0 0' }}>
           New Project Inquiry
