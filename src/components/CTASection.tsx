@@ -76,7 +76,7 @@ export default function CTASection() {
           </div>
 
           <div className="bg-[#D4AF37] px-3 py-1 text-[11px] md:text-xs font-bold uppercase tracking-[0.15em] text-black mb-8 rounded-[2px]">
-            The Pivotal Standard
+            The Slick Standard
           </div>
           
           <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-bold tracking-tighter text-white leading-[1.05] max-w-5xl drop-shadow-2xl">

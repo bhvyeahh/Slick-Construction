@@ -88,7 +88,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
 
         {/* Call to Action Button */}
         <div style={{ marginTop: '50px', textAlign: 'center' }}>
-          <a href={`mailto:${email}?subject=Re: Your Project Inquiry - Pivotal Builders`} style={{
+          <a href={`mailto:${email}?subject=Re: Your Project Inquiry - Slick Construction`} style={{
             display: 'inline-block',
             backgroundColor: '#000000',
             color: '#ffffff',
@@ -109,7 +109,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
       {/* Footer */}
       <div style={{ backgroundColor: '#f9f9f9', padding: '25px', textAlign: 'center', borderTop: '1px solid #eeeeee' }}>
         <p style={{ margin: '0', fontSize: '11px', color: '#999999', textTransform: 'uppercase', letterSpacing: '1px' }}>
-          Securely transmitted via pivotalbuildersinc.com
+          Securely transmitted via slick construction
         </p>
       </div>
 

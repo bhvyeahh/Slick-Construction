@@ -177,7 +177,7 @@ export default function Navbar() {
             >
               <div className="flex flex-row items-center justify-between gap-6">
                 <a 
-                  href="https://www.instagram.com/" 
+                  href="https://www.instagram.com/slick_constsf/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-white hover:text-[#D4AF37] transition-colors duration-300 w-fit"

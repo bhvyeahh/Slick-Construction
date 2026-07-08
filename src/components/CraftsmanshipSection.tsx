@@ -46,7 +46,7 @@ export default function CraftsmanshipSection() {
             className="mb-6 flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-gold uppercase"
           >
             <div className="h-1.5 w-1.5 rounded-full bg-gold" />
-            The Pivotal Standard
+            The Slick Standard
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

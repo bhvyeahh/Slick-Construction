@@ -101,7 +101,7 @@ export default function Footer() {
             </div>
 
             <a 
-              href="https://www.instagram.com/pivotalbuilders/" 
+              href="https://www.instagram.com/slick_constsf/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-3 text-sm font-bold text-black bg-white px-6 py-3 rounded-full hover:bg-[#D4AF37] transition-all w-fit group"
