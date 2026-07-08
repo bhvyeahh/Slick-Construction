@@ -62,11 +62,11 @@ const properties = [
     description: "Urban elegance redefined. This property showcases our commitment to high-performance materials and timeless design.",
     images: [
       // Tall Left
-      { src: "/Mission Street/mission-1.png", style: "md:col-span-1 md:row-span-2 h-[400px] md:h-[600px]" },
+      { src: "/Mission-Street/mission-1.png", style: "md:col-span-1 md:row-span-2 h-[400px] md:h-[600px]" },
       // Top Right Wide
-      { src: "/Mission Street/mission-2.png", style: "md:col-span-2 md:row-span-1 h-[250px] md:h-[288px]" },
+      { src: "/Mission-Street/mission-2.png", style: "md:col-span-2 md:row-span-1 h-[250px] md:h-[288px]" },
       // Bottom Right Wide
-      { src: "/Mission Street/mission-3.png", style: "md:col-span-2 md:row-span-1 h-[250px] md:h-[288px]" },
+      { src: "/Mission-Street/mission-3.png", style: "md:col-span-2 md:row-span-1 h-[250px] md:h-[288px]" },
     ],
   },
 ];
