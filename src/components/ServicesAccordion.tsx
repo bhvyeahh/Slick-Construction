@@ -21,13 +21,13 @@ const services = [
     id: "03",
     category: "Bathrooms",
     title: "Bathroom Remodel",
-    image: "/slick/slick-2.png",
+    image: "/slick/slick-31.png",
   },
   {
     id: "04",
     category: "Extensions",
-    title: "ADU Builds",
-    image: "/slick/slick-12.png",
+    title: "Deck Builds",
+    image: "/slick/slick-35.jpeg",
   },
 ];
 

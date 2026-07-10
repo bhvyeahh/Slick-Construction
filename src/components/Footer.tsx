@@ -36,20 +36,19 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           
           {/* 1. Logo & Vision (Spans 4 columns) */}
-          <div className="lg:col-span-4 flex flex-col items-start gap-8">
-            <div className="relative w-16 h-16 md:w-34 md:h-24 flex-shrink-0">
-              <Image 
-                src="/slick/slick-logo.png" 
-                alt="Slick Construction Symbol" 
-                fill
-                className="object-contain"
-                 
-              />
-            </div>
-            <p className="text-gray-400 font-medium text-lg leading-relaxed max-w-sm">
-              We don't just build homes; we engineer legacies. Precision, transparency, and unmatched architectural rigor.
-            </p>
-          </div>
+          <div className="lg:col-span-4 flex flex-col items-start gap-6">
+  <h2
+    className="text-5xl sm:text-6xl md:text-5xl lg:text-5xl font-black uppercase tracking-tight leading-none"
+    style={{ letterSpacing: "-0.06em" }}
+  >
+    SLICK
+  </h2>
+
+  <p className="text-gray-400 font-medium text-lg leading-relaxed max-w-sm">
+    We don't just build homes; we engineer legacies. Precision,
+    transparency, and unmatched architectural rigor.
+  </p>
+</div>
 
           {/* 2. Navigation (Spans 2 columns) */}
           <div className="lg:col-span-2 flex flex-col gap-6">
@@ -74,9 +73,9 @@ export default function Footer() {
                 <Phone size={16} className="text-gray-500 group-hover:text-[#D4AF37] transition-colors" />
                 <span className="text-lg font-medium">(415) 940 9199</span>
               </a>
-              <a href="mailto:office@slickconstructionsf.com" className="group flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+              <a href="mailto:info@scsfinc.com" className="group flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
                 <Mail size={16} className="text-gray-500 group-hover:text-[#D4AF37] transition-colors" />
-                <span className="text-lg font-medium">office@slickconstructionsf.com</span>
+                <span className="text-lg font-medium">info@scsfinc.com</span>
               </a>
               <div className="flex items-start gap-3 text-gray-300 mt-2">
                 <MapPin size={16} className="text-gray-500 mt-1" />
@@ -121,9 +120,7 @@ export default function Footer() {
           style={{ y: textY, opacity: textOpacity }}
           className="w-full flex justify-center mt-32 mb-12 pointer-events-none select-none"
         >
-          <h1 className="text-[22vw] leading-[0.75] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-[#111111]">
-            SLICK
-          </h1>
+    
         </motion.div>
 
         {/* =========================================================================

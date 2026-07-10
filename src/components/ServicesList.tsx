@@ -12,65 +12,66 @@ import { ArrowUpRight, Check } from "lucide-react";
 const servicesData = [
   {
     id: "01",
-    title: "Proud of Perfection",
-    description: "Slick Construction prides itself on high-end family residences and home remodels, taking your vision from bare studs to a flawless turn-key finish.",
-    image: "/slick/slick-1.png",
-    pointsTitle: "Key Points",
+    title: "Bathroom Remodeling",
+    description: "Transform your daily routine with a luxury, spa-inspired bathroom. We specialize in optimizing spatial layouts, executing flawless tilework, and installing premium fixtures to create your perfect private retreat.",
+    image: "/slick/slick-34.png",
+    pointsTitle: "Key Upgrades",
     points: [
-      "Kitchen & bathroom remodels",
-      "Comprehensive seismic upgrades",
-      "Custom stair installation",
-      "Precision window & door fitting"
+      "Custom walk-in showers & wet rooms",
+      "Premium tile & natural stone installation",
+      "Double vanity & bespoke cabinetry",
+      "High-efficiency & luxury plumbing fixtures"
     ],
     link: "/portfolio"
   },
   {
     id: "02",
-    title: "Kitchen & Bathroom",
-    description: "Alongside new builds and expert carpentry, we specialize in transforming kitchens and bathrooms. We guide you through everything—from choosing the perfect stone island to integrating the latest appliances.",
-    image: "/slick/slick-22.png", // Explicitly requested image
+    title: "Kitchen Remodeling",
+    description: "The heart of your home deserves a masterfully crafted upgrade. From chef-grade appliance integration to stunning custom islands, we build breathtaking kitchens engineered for both high-end entertaining and daily family life.",
+    image: "/slick/slick-14.png", 
     pointsTitle: "Specialties",
     points: [
-      "New building construction",
-      "Expert custom carpentry skills",
-      "Premium stone & material selection",
-      "High-end appliance integration"
+      "Chef-grade appliance integration",
+      "Custom islands & premium stone countertops",
+      "Bespoke cabinetry & intelligent storage",
+      "Architectural lighting & electrical layouts"
     ],
     link: "/portfolio"
   },
   {
     id: "03",
-    title: "The Personal Approach",
-    description: "We pride ourselves on customer relationships. Dedicated 100% to each project, we resolve unexpected problems calmly and efficiently, ensuring safety and clear communication every step of the way.",
-    image: "/slick/slick-14.png",
-    pointsTitle: "Our Commitment",
+    title: "Custom Deck Builds",
+    description: "Expand your living footprint into the outdoors with a custom-engineered deck. We design and construct durable, visually stunning outdoor platforms built to withstand the elements while providing the ultimate space for hosting.",
+    image: "/slick/slick-35.jpeg",
+    pointsTitle: "Capabilities",
     points: [
-      "100% dedicated project management",
-      "Calm & efficient problem resolution",
-      "Strict safety & timeline adherence",
-      "Constant communication with clients & architects"
+      "Premium composite & natural wood decking",
+      "Custom railing & glass balustrade systems",
+      "Multi-level & complex platform design",
+      "Integrated outdoor lighting & seating"
     ],
     link: "/contact"
   }
 ];
 
 // ─────────────────────────────────────────────────────────────────
-// ANIMATION VARIANTS
+// ANIMATION VARIANTS (Enhanced for smooth scroll reveal)
 // ─────────────────────────────────────────────────────────────────
-const containerVariants : Variants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.25, delayChildren: 0.1 },
   },
 };
 
-const itemVariants : Variants = {
-  hidden: { opacity: 0, y: 40 },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 60, filter: "blur(4px)" },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -84,10 +85,10 @@ export default function ServicesList() {
         
         {/* ── SECTION HEADER ── */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="mb-20 md:mb-32"
         >
           <h4 className="text-[#D4AF37] text-xs uppercase tracking-[0.2em] mb-4 font-mono font-bold">
@@ -100,13 +101,13 @@ export default function ServicesList() {
 
         {/* ── SERVICES LIST ── */}
         <div className="flex flex-col gap-24 md:gap-40">
-          {servicesData.map((service, index) => (
+          {servicesData.map((service) => (
             <motion.div 
               key={service.id}
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-150px" }} // Triggers slightly earlier for a seamless feel
               className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr_1fr] gap-12 lg:gap-16 items-start"
             >
               
@@ -137,14 +138,14 @@ export default function ServicesList() {
 
               {/* MIDDLE COLUMN: Image */}
               <motion.div variants={itemVariants} className="w-full">
-                <div className="relative w-full aspect-[4/5] md:aspect-square overflow-hidden bg-[#141414]">
+                <div className="relative w-full aspect-[4/5] md:aspect-square overflow-hidden bg-[#141414] rounded-sm">
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
                     className="object-cover transition-transform duration-[2s] hover:scale-105"
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                      // Prevents Next.js aggressive lazy loading blur issues
+                    unoptimized
                   />
                   {/* Subtle glass overlay to blend perfectly with dark theme */}
                   <div className="absolute inset-0 bg-black/10 pointer-events-none" />

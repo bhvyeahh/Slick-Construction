@@ -23,7 +23,7 @@ export default function Home() {
     <ServicesAccordion />
     <PropertyListing />
     <CraftsmanshipSection />
-    <ScrollVideoSection />
+    {/* <ScrollVideoSection /> */}
     <ProcessSection />
     <TestimonialsSection  />
     <Footer />

@@ -57,14 +57,14 @@ export default function StatsAboutSection() {
   const stats = [
     {
       id: "01",
-      value: "4.6M+",
-      description: "Total value of projects delivered successfully.",
+      value: "15+",
+      description: "Years of master craftsmanship.",
       delay: 0.2,
     },
     {
       id: "02",
-      value: "320+",
-      description: "Active homes and commercial spaces built.",
+      value: "45+",
+      description: "Successful projects.",
       delay: 0.4,
     },
     {
@@ -132,7 +132,7 @@ export default function StatsAboutSection() {
             <div className="flex items-center gap-4">
               <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/10">
                 <Image
-                  src="/website-photos-3.jpg" // Swap with your actual client avatar image
+                  src="/slick-33.png" // Swap with your actual client avatar image
                   alt="Alisson Backer"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"

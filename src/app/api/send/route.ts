@@ -87,7 +87,7 @@ export async function POST(request: Request) {
     // ─────────────────────────────────────────────
     const { data, error } = await resend.emails.send({
       from: "Queries <slick@layoutory.in>", // Must be a verified Resend sender
-      to: ["office@slickconstructionsf.com"],
+      to: ["info@scsfinc.com"],
       replyTo: email,
       subject: `New Inquiry: ${service} - ${name}`,
       react: EmailTemplate({

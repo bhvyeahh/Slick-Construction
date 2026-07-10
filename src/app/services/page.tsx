@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 // Ensure this path matches where you saved the component
 import ServicesList from "@/components/ServicesList"; 
@@ -14,13 +15,14 @@ export default function ServicesPage() {
       {/* ── LIGHT THEME HERO SECTION ── */}
       {/* The rounded-b-[3rem] creates a premium overlapping curve into the dark section */}
       <section className="relative w-full bg-[#F5F5F0] text-black pt-40 pb-32 md:pt-52 md:pb-48 overflow-hidden rounded-b-[2rem] md:rounded-b-[4rem] z-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
           
+          {/* LEFT: Text Content (Made smaller/tighter to fit the image) */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl"
+            className="w-full lg:w-1/2 max-w-xl"
           >
             {/* Golden Accent Tag */}
             <div className="flex items-center gap-4 mb-8">
@@ -31,15 +33,31 @@ export default function ServicesPage() {
             </div>
             
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-8 text-[#111]">
-              Crafting <span className="font-serif italic text-[#D4AF37]">Perfection</span> <br />
-              In Every Detail.
+            <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold tracking-tight leading-[1.05] mb-8 text-[#111] uppercase">
+              Mastering <br />
+              The <span className="font-serif italic text-[#D4AF37] normal-case">Details.</span>
             </h1>
             
             {/* Subtitle */}
-            <p className="text-lg md:text-xl text-gray-600 font-medium max-w-2xl leading-relaxed">
-              From high-end family residences to transformative remodels, we bring unparalleled precision, premium materials, and a deeply personal approach to every project we touch.
+            <p className="text-lg md:text-xl text-gray-600 font-medium leading-relaxed">
+              Flawless execution and premium materials. We deliver high-end custom homes and transformative remodels.
             </p>
+          </motion.div>
+
+          {/* RIGHT: Image with Reveal Animation */}
+          <motion.div 
+            initial={{ clipPath: "inset(0% 100% 0% 0%)", scale: 1.05 }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)", scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="w-full lg:w-1/2 relative h-[400px] md:h-[500px] rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl"
+          >
+            <Image 
+              src="/slick-33.png" // Update this path to your preferred image
+              alt="Slick Construction Expertise" 
+              fill
+              priority
+              className="object-cover object-center"
+            />
           </motion.div>
 
         </div>

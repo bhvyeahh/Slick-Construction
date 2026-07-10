@@ -11,7 +11,6 @@ import {
   Instagram 
 } from 'lucide-react';
 
-// Added Contact directly to the main links array as requested
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
@@ -35,7 +34,7 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  // Mobile Menu Animation Variants (Unchanged layout)
+  // Mobile Menu Animation Variants
   const menuVariants: Variants = {
     closed: { 
       opacity: 0,
@@ -63,16 +62,15 @@ export default function Navbar() {
         <div className="w-full md:w-[70vw] max-w-[1200px] flex items-center justify-between pointer-events-auto">
           
           {/* ==========================================
-              LEFT: NAKED LOGO (No background, No text)
+              LEFT: LOGO (HIDDEN ON MOBILE, VISIBLE ON DESKTOP)
           ========================================== */}
-          <Link href="/" className="relative w-16 h-16 md:w-40 md:h-20 shrink-0 transition-transform duration-500 hover:scale-110">
+          <Link href="/" className="hidden md:block relative md:w-40 md:h-20 shrink-0 transition-transform duration-500 hover:scale-110">
             <Image 
               src="/slick/slick-logo.png" 
               alt="Logo" 
               fill
               className="object-contain drop-shadow-md"
               priority
-               
             />
           </Link>
 
@@ -94,8 +92,9 @@ export default function Navbar() {
           {/* ==========================================
               RIGHT: MOBILE TOGGLE (Liquid Glass)
           ========================================== */}
+          {/* ml-auto ensures it stays on the right side when the logo is hidden */}
           <button 
-            className="md:hidden flex items-center justify-center p-3 rounded-full bg-white/30 backdrop-blur-xl backdrop-saturate-150 border border-white/40 shadow-lg text-black hover:bg-white/40 transition-colors"
+            className="md:hidden ml-auto flex items-center justify-center p-3 rounded-full bg-white/30 backdrop-blur-xl backdrop-saturate-150 border border-white/40 shadow-lg text-black hover:bg-white/40 transition-colors"
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Open Mobile Menu"
           >
@@ -105,7 +104,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── LUXURY FULL SCREEN OVERLAY MOBILE ENTRY (Unchanged Mobile Layout) ── */}
+      {/* ── LUXURY FULL SCREEN OVERLAY MOBILE ENTRY ── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
@@ -118,13 +117,13 @@ export default function Navbar() {
             {/* Mobile Header Elements */}
             <div className="flex justify-between items-center p-6 shrink-0 border-b border-white/10">
               <div className="flex items-center gap-3">
-                <div className="relative w-8 h-8">
+                {/* LARGER LOGO FOR MOBILE MENU OVERLAY */}
+                <div className="relative w-32 h-16">
                   <Image
                     src="/slick/slick-5.png" 
                     alt="Logo" 
                     fill
                     className="object-contain"
-                     
                   />
                 </div>
               </div>

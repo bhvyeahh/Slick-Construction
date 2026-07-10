@@ -153,30 +153,6 @@ const CinematicCard = ({
         <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter text-white leading-[0.95] mb-6 drop-shadow-2xl max-w-4xl">
           {property.title}
         </h2>
-        
-        <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-12">
-          <span className="text-3xl md:text-5xl font-medium text-[#D4AF37] drop-shadow-lg">
-            {property.price}
-          </span>
-          
-          <div className="hidden md:block h-10 w-[1px] bg-white/30" />
-
-          {/* Specs */}
-          <div className="flex flex-wrap items-center gap-5 text-sm md:text-lg font-medium text-gray-300 pb-1">
-            <div className="flex items-center gap-2">
-              <span className="text-[#D4AF37]">Beds:</span> {property.beds}
-            </div>
-            <span className="text-white/20">•</span>
-            <div className="flex items-center gap-2">
-              <span className="text-[#D4AF37]">Baths:</span> {property.baths}
-            </div>
-            <span className="text-white/20">•</span>
-            <div className="flex items-center gap-2">
-              <span className="text-[#D4AF37]">Area:</span> {property.sqft} sq ft
-            </div>
-          </div>
-        </div>
-
       </div>
     </motion.div>
   );

@@ -12,7 +12,7 @@ const gridImages = [
   "/slick/slick-18.png",
   "/slick/slick-19.png",
   "/slick/slick-20.png",
-  "/slick/slick-21.png",
+  "/slick/slick-29.png",
   "/slick/slick-23.png", // Skipping 22 as it was used in services
 ];
 

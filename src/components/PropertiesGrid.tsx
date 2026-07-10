@@ -24,7 +24,7 @@ export default function PropertiesGrid() {
   };
 
   return (
-    <section className="w-full max-w-[1400px] mx-auto px-6 py-16 bg-white text-black">
+    <section className="w-full max-w-[1400px] mx-auto px-6 py-46 bg-white text-black">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -55,12 +55,9 @@ export default function PropertiesGrid() {
               href="#"
               className="group flex items-center text-xs font-mono uppercase font-bold tracking-wider hover:text-gray-500 transition-colors"
             >
-              See All Properties
+              See All Properties - Scroll Down
               {/* Custom Long Arrow */}
-              <div className="ml-4 flex items-center relative w-24">
-                <div className="w-full h-[1px] bg-black group-hover:bg-gray-500 transition-colors" />
-                <div className="absolute right-0 w-2 h-2 border-t border-r border-black group-hover:border-gray-500 transition-colors transform rotate-45 -translate-y-[0.5px]" />
-              </div>
+              
             </a>
           </motion.div>
         </div>
@@ -72,7 +69,7 @@ export default function PropertiesGrid() {
           <motion.div variants={itemVariants} className="flex flex-col">
             <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
               <Image
-                src="/slick/slick-14.png"
+                src="/Green-Street/green-4.png"
                 alt="Soriyano Residence"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700 ease-in-out"
@@ -80,8 +77,8 @@ export default function PropertiesGrid() {
               />
             </div>
             <div className="flex justify-between items-center mt-4 text-[11px] font-mono font-bold uppercase tracking-widest">
-              <span>2023</span>
-              <span>Soriyano Residence</span>
+              <span></span>
+              <span>Green Street</span>
             </div>
           </motion.div>
 
@@ -93,7 +90,7 @@ export default function PropertiesGrid() {
             </p>
             <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
               <Image
-                src="/slick/slick-17.png"
+                src="/Mission-Street/mission-1.png"
                 alt="Marendra Residence"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700 ease-in-out"
@@ -101,8 +98,8 @@ export default function PropertiesGrid() {
               />
             </div>
             <div className="flex justify-between items-center mt-4 text-[11px] font-mono font-bold uppercase tracking-widest">
-              <span>2024</span>
-              <span>Marendra Residence</span>
+              <span></span>
+              <span>Mission Street</span>
             </div>
           </motion.div>
 
@@ -119,26 +116,13 @@ export default function PropertiesGrid() {
                 />
               </div>
               <div className="flex justify-between items-center mt-4 text-[11px] font-mono font-bold uppercase tracking-widest">
-                <span>2024</span>
+                <span></span>
                 <span>Brastana House</span>
               </div>
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex justify-end mt-8 md:mt-0 gap-3">
-              <button className="w-12 h-12 border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-                {/* Left Arrow SVG */}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M19 12H5M5 12L12 19M5 12L12 5" strokeLinecap="square" strokeLinejoin="miter"/>
-                </svg>
-              </button>
-              <button className="w-12 h-12 bg-[#111] text-white flex items-center justify-center hover:bg-black transition-colors">
-                {/* Right Arrow SVG */}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeLinecap="square" strokeLinejoin="miter"/>
-                </svg>
-              </button>
-            </div>
+            
           </motion.div>
           
         </div>

@@ -14,7 +14,7 @@ const processes = [
     subtitle: "Conceptualization & Alignment",
     description:
       "We initiate with a collaborative design review, aligning architects, engineers, and designers. Every foundational detail is scrutinized to lock in a unified vision before any ground is broken.",
-    image: "/slick/slick-31.png",
+    image: "/slick/slick-11.png",
   },
   {
     id: "02",
