@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { LayoutGrid, Sparkles } from "lucide-react";
 
-// Generate array for all 30 images, explicitly skipping 4 and 5
+// Generate array for all 35 images, explicitly skipping 4 and 5
 const galleryImages = Array.from({ length: 32 }, (_, i) => i + 1)
   .filter((num) => num !== 4 && num !== 5)
   .map((num) => `/slick/slick-${num}.png`);
@@ -50,7 +50,7 @@ export default function InfinityGallery() {
   const renderCinematic = mounted && isDesktop && viewMode === "cinematic";
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-[#0A0A0A] min-h-screen pt-24">
+    <section ref={sectionRef} className="relative w-full overflow-x-hidden bg-[#0A0A0A] min-h-screen pt-24">
       
       {/* ── HEADER & TOGGLE BUTTON ── */}
       <div className="sticky top-24 z-50 max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pointer-events-none mb-12">
@@ -124,7 +124,7 @@ function BentoGallery() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               className={`relative overflow-hidden rounded-[1.5rem] bg-[#141414] border border-white/5 group ${
-                isFeatured ? "md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto min-h-[400px]" : "col-span-1 aspect-[4/3]"
+                isFeatured ? "md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto md:min-h-[400px]" : "col-span-1 aspect-[4/3]"
               }`}
             >
               <Image 
@@ -202,7 +202,7 @@ function CinematicExperience() {
           <motion.div style={{ x: beltX1, y: "-15vh" }} className="absolute flex gap-4 md:gap-8 z-10 w-[200vw]">
             {galleryImages.slice(0, 5).map((src, i) => (
               <div key={i} className="relative w-[60vw] md:w-[400px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                <Image src={src} alt="Belt" fill className="object-cover"   loading="eager" />
+                <Image src={src} alt="Belt" fill className="object-cover"  loading="eager" />
               </div>
             ))}
           </motion.div>
@@ -210,7 +210,7 @@ function CinematicExperience() {
           <motion.div style={{ x: beltX2, y: "15vh" }} className="absolute flex gap-4 md:gap-8 z-20 w-[200vw]">
             {galleryImages.slice(5, 10).map((src, i) => (
               <div key={i} className="relative w-[60vw] md:w-[400px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                <Image src={src} alt="Belt" fill className="object-cover"   loading="eager" />
+                <Image src={src} alt="Belt" fill className="object-cover"  loading="eager" />
               </div>
             ))}
           </motion.div>
@@ -222,13 +222,13 @@ function CinematicExperience() {
           className="absolute inset-0 w-full h-full flex items-center justify-center gap-4 md:gap-12 transform-gpu"
         >
           <motion.div style={{ y: stair1Y }} className="relative w-[30vw] md:w-[25vw] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20">
-            <Image src={galleryImages[14]} alt="Stair 1" fill className="object-cover"   loading="eager" />
+            <Image src={galleryImages[14]} alt="Stair 1" fill className="object-cover"  loading="eager" />
           </motion.div>
           <motion.div style={{ y: stair2Y }} className="relative w-[30vw] md:w-[25vw] aspect-[4/5] rounded-2xl overflow-hidden border border-[#D4AF37]/50 mt-[10vh]">
-            <Image src={galleryImages[15]} alt="Stair 2" fill className="object-cover"   loading="eager" />
+            <Image src={galleryImages[15]} alt="Stair 2" fill className="object-cover"  loading="eager" />
           </motion.div>
           <motion.div style={{ y: stair3Y }} className="relative w-[30vw] md:w-[25vw] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 mt-[20vh] hidden md:block">
-            <Image src={galleryImages[16]} alt="Stair 3" fill className="object-cover"   loading="eager" />
+            <Image src={galleryImages[16]} alt="Stair 3" fill className="object-cover"  loading="eager" />
           </motion.div>
         </motion.div>
 
@@ -238,7 +238,7 @@ function CinematicExperience() {
           className="absolute inset-0 w-full h-full flex items-center justify-center z-40 transform-gpu pointer-events-none"
         >
           <motion.div style={{ width: monolithWidth, height: monolithHeight, borderRadius: monolithRadius }} className="relative overflow-hidden border border-white/10">
-            <Image src={galleryImages[2]} alt="Monolith" fill className="object-cover"   loading="eager" />
+            <Image src={galleryImages[2]} alt="Monolith" fill className="object-cover"  loading="eager" />
             <div className="absolute inset-0 bg-black/20" />
           </motion.div>
         </motion.div>
@@ -252,7 +252,7 @@ function CinematicExperience() {
           <motion.div style={{ y: cascade1Y }} className="flex flex-col gap-3 md:gap-8 w-[30vw] md:w-[25vw]">
             {galleryImages.slice(18, 22).map((src, i) => (
               <div key={i} className="relative w-full aspect-square rounded-2xl overflow-hidden border border-white/10">
-                <Image src={src} alt="Cascade Col 1" fill className="object-cover"   loading="eager" />
+                <Image src={src} alt="Cascade Col 1" fill className="object-cover"  loading="eager" />
               </div>
             ))}
           </motion.div>
@@ -261,7 +261,7 @@ function CinematicExperience() {
           <motion.div style={{ y: cascade2Y }} className="flex flex-col gap-3 md:gap-8 w-[30vw] md:w-[25vw] mt-10">
             {galleryImages.slice(22, 26).map((src, i) => (
               <div key={i} className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-[#D4AF37]/30">
-                <Image src={src} alt="Cascade Col 2" fill className="object-cover"   loading="eager" />
+                <Image src={src} alt="Cascade Col 2" fill className="object-cover"  loading="eager" />
               </div>
             ))}
           </motion.div>
@@ -270,7 +270,7 @@ function CinematicExperience() {
           <motion.div style={{ y: cascade3Y }} className="flex flex-col gap-3 md:gap-8 w-[30vw] md:w-[25vw] mt-20">
             {galleryImages.slice(26, 30).map((src, i) => (
               <div key={i} className="relative w-full aspect-square rounded-2xl overflow-hidden border border-white/10">
-                <Image src={src} alt="Cascade Col 3" fill className="object-cover"   loading="eager" />
+                <Image src={src} alt="Cascade Col 3" fill className="object-cover"  loading="eager" />
               </div>
             ))}
           </motion.div>
@@ -283,10 +283,10 @@ function CinematicExperience() {
         >
           <div className="relative flex flex-col md:flex-row items-center justify-center w-full h-full gap-4 md:gap-0">
             <motion.div style={{ x: twinLeftX }} className="relative w-[80vw] md:w-[35vw] aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 md:absolute z-20">
-              <Image src={galleryImages[6]} alt="Twin Left" fill className="object-cover"   loading="eager" />
+              <Image src={galleryImages[6]} alt="Twin Left" fill className="object-cover"  loading="eager" />
             </motion.div>
             <motion.div style={{ x: twinRightX }} className="relative w-[80vw] md:w-[35vw] aspect-[4/3] rounded-2xl overflow-hidden border border-[#D4AF37]/30 md:absolute z-10 hidden md:block">
-              <Image src={galleryImages[7]} alt="Twin Right" fill className="object-cover"   loading="eager" />
+              <Image src={galleryImages[7]} alt="Twin Right" fill className="object-cover"  loading="eager" />
             </motion.div>
           </div>
 
