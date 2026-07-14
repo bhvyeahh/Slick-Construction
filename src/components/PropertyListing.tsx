@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import Link from "next/dist/client/link";
 
 // ─────────────────────────────────────────────────────────────────
 // PROPERTY DATA
@@ -191,9 +192,12 @@ export default function PropertyListing() {
             Find your next <br />
             <span className="text-[#D4AF37] italic">masterpiece.</span>
           </h3>
-          <button className="relative z-10 mt-10 px-8 py-4 rounded-full bg-[#D4AF37] text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors duration-300 shadow-lg">
-            View All Properties
-          </button>
+          <Link 
+  href="/portfolio" 
+  className="relative z-10 mt-10 px-8 py-4 rounded-full bg-[#D4AF37] text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors duration-300 shadow-lg inline-block"
+>
+  View All Properties
+</Link>
         </motion.div>
 
         {/* ── THE PROPERTIES (Stacking & Scattering) ── */}

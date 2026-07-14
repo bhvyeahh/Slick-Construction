@@ -10,27 +10,27 @@ import { motion, useInView } from "framer-motion";
 const testimonials = [
   {
     id: 1,
-    quote: "The level of precision and transparency is unmatched. Slick Construction turned our complex architectural plans into a flawless reality.",
-    name: "Noah Mitchell",
-    role: "Private Homeowner",
+    quote: "They kept the site incredibly clean and actually finished a week ahead of schedule. Highly recommend their team.",
+    name: "Michael Vance",
+    role: "Homeowner",
   },
   {
     id: 2,
-    quote: "A very well-designed experience that made building simple. Everything was clear, on schedule, and completely stress-free.",
-    name: "Emma Collins",
-    role: "Commercial Investor",
+    quote: "No hidden fees and no endless delays. They told us what the remodel would cost upfront and delivered perfectly.",
+    name: "Lisa Chen",
+    role: "Property Owner",
   },
   {
     id: 3,
-    quote: "Absolutely phenomenal craftsmanship. They took our initial concepts and engineered a space that far exceeded our expectations.",
-    name: "Sarah Jenkins",
-    role: "Property Developer",
+    quote: "The custom tile work in our master bath is flawless. You can tell they really care about the small details.",
+    name: "Robert Gallagher",
+    role: "Residential Client",
   },
   {
     id: 4,
-    quote: "Their master specification process leaves zero room for error. The quality of materials and execution is world-class.",
-    name: "Marcus Reed",
-    role: "Real Estate Consultant",
+    quote: "Renovating is usually a nightmare, but their crew made the entire process completely painless from start to finish.",
+    name: "Anita Desai",
+    role: "Real Estate Investor",
   },
 ];
 

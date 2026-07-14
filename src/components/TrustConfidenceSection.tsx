@@ -8,10 +8,10 @@ import Link from 'next/link';
 
 // Dummy gallery images (using the slick series you provided)
 const galleryImages = [
-  "/slick/slick-1.png",
-  "/slick/slick-2.png",
-  "/slick/slick-3.png",
-  "/slick/slick-5.png",
+  "/slick/slick-17.png",
+  "/slick/slick-6.png",
+  "/slick/slick-12.png",
+  "/slick/slick-35.jpeg",
 ];
 
 export default function TrustConfidenceSection() {
@@ -73,13 +73,13 @@ export default function TrustConfidenceSection() {
               <span className="text-sm font-bold text-gray-500 mb-2">Real Results</span>
               
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-black/5">
-                <span className="block text-xs font-semibold text-gray-500 mb-1">Total Value</span>
-                <span className="block text-3xl font-bold text-[#111111]">$4.6M+</span>
+                <span className="block text-xs font-semibold text-gray-500 mb-1">Experience</span>
+                <span className="block text-3xl font-bold text-[#111111]">15+ Years</span>
               </div>
               
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-black/5">
-                <span className="block text-xs font-semibold text-gray-500 mb-1">Active Homes</span>
-                <span className="block text-3xl font-bold text-[#111111]">320+</span>
+                <span className="block text-xs font-semibold text-gray-500 mb-1">Projects</span>
+                <span className="block text-3xl font-bold text-[#111111]">45+</span>
               </div>
               
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-black/5">
@@ -91,7 +91,7 @@ export default function TrustConfidenceSection() {
             {/* Bottom CTA Card */}
             <div className="relative bg-gray-200 rounded-[2rem] p-6 overflow-hidden min-h-[220px] flex flex-col justify-between group">
               <div className="absolute inset-0 z-0">
-                <Image src="/slick/slick-5.png" alt="Background" fill className="object-cover opacity-30 mix-blend-multiply"   />
+                <Image src="/slick/slick-14.png" alt="Background" fill className="object-cover opacity-30 mix-blend-multiply"   />
                 <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/60" />
               </div>
               
@@ -129,11 +129,11 @@ export default function TrustConfidenceSection() {
             
             <div className="absolute bottom-0 left-0 w-full p-8 md:p-12">
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
-                Guidance you can trust <br /> in your home search
+                Nick <br /> Coleman
               </h3>
-              <p className="text-sm md:text-base text-gray-300 font-medium leading-relaxed max-w-lg">
+              {/* <p className="text-sm md:text-base text-gray-300 font-medium leading-relaxed max-w-lg">
                 With the right expertise and a clear approach, explore homes with confidence and move closer to finding a space that truly fits your lifestyle.
-              </p>
+              </p> */}
             </div>
           </motion.div>
 

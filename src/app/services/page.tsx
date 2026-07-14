@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 // Ensure this path matches where you saved the component
 import ServicesList from "@/components/ServicesList"; 
 import DreamProjectCTA from "@/components/DreamProjectCTA";
+import Footer from "@/components/Footer";
 
 export default function ServicesPage() {
   return (
@@ -69,7 +70,7 @@ export default function ServicesPage() {
         <ServicesList />
         <DreamProjectCTA />
       </div>
-      
+      <Footer />
     </main>
   );
 }

@@ -74,12 +74,12 @@ export default function AboutHeroSection() {
             </div>
 
             {/* Bottom Left Image (Horizontal) */}
-            <motion.div variants={imageRevealVariants} className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-black/5 mt-auto hidden lg:block">
+            <motion.div variants={imageRevealVariants} className="relative w-full aspect-[5/3] rounded-[2rem] overflow-hidden shadow-lg border border-black/5 mt-auto hidden lg:block">
               <Image 
-                src="/slick/slick-5.png" 
+                src="/slick/slick-logo.png" 
                 alt="Modern Home Exterior" 
                 fill
-                className="object-cover"
+                className="object-fit"
                  
               />
             </motion.div>
@@ -88,7 +88,7 @@ export default function AboutHeroSection() {
           {/* RIGHT COLUMN (Spans 7 cols) - Massive Vertical Image */}
           <motion.div variants={imageRevealVariants} className="lg:col-span-7 relative w-full h-[500px] lg:h-full min-h-[600px] rounded-[2rem] overflow-hidden shadow-xl border border-black/5">
              <Image 
-                src="/slick/slick-2.png" 
+                src="/slick/slick-29.png" 
                 alt="Luxury A-Frame Home" 
                 fill
                 className="object-cover"

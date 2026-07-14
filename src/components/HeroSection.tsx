@@ -2,11 +2,12 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from "next/link";
 import { 
   ShieldCheck, 
   HardHat, 
   Handshake, 
-  Award 
+  Award, 
 } from 'lucide-react';
 
 export default function HeroSection() {
@@ -69,13 +70,25 @@ export default function HeroSection() {
             
             {/* Responsive Button (Sits right under the text) */}
             <div className="flex w-full animate-[fadeIn_1s_ease-out_0.6s_both]">
-              <a 
-                href="#portfolio" 
+              <Link 
+                href="/portfolio" 
                 className="w-full lg:w-auto text-center px-10 py-4 bg-[#D4AF37] text-black font-bold font-mono text-xs uppercase tracking-widest rounded-sm transition-all duration-300 hover:bg-white hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] active:scale-95 lg:active:scale-100"
               >
                 View Our Portfolio
-              </a>
+              </Link>
             </div>
+          </div>
+
+          {/* 3. DESKTOP LOGO (Right Side, strictly hidden on mobile) */}
+          <div className="hidden lg:block absolute right-16 xl:right-24 top-1/2 -translate-y-1/2 w-[350px] xl:w-[450px] h-[150px] xl:h-[250px] animate-[fadeIn_1s_ease-out_0.4s_both] pointer-events-none">
+            <Image 
+              src="/slick/slick-logo.png" 
+              alt="Slick Construction Logo Desktop"
+              fill
+              className="object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)]"
+              priority
+              unoptimized
+            />
           </div>
 
         </div>

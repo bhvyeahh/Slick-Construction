@@ -17,12 +17,14 @@ export default function ScrollToTop() {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    // Added { passive: true } for better scroll performance
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   // Scroll to top handler
-  const scrollToTop = () => {
+  const scrollToTop = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault(); // Prevents default browser behaviors from interrupting the click
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -33,17 +35,22 @@ export default function ScrollToTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
+          type="button"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-[9999] p-3 rounded-full bg-white/10 hover:bg-black hover:text-white text-black backdrop-blur-md border border-black/10 transition-colors shadow-lg group"
+          /* 
+            FIX: Changed standard hover to lg:hover to prevent the iOS double-tap bug.
+            Added active:bg-black for instant feedback on mobile devices.
+          */
+          className="fixed bottom-8 right-8 z-[9999] p-3 rounded-full bg-white/10 text-black backdrop-blur-md border border-black/10 transition-colors shadow-lg group lg:hover:bg-black lg:hover:text-white active:bg-black active:text-white cursor-pointer"
           aria-label="Scroll to top"
         >
           <ArrowUp 
             size={24} 
             strokeWidth={2}
-            className="group-hover:-translate-y-1 transition-transform duration-300" 
+            className="lg:group-hover:-translate-y-1 transition-transform duration-300" 
           />
         </motion.button>
       )}

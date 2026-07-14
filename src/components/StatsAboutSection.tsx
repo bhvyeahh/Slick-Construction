@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 
@@ -54,6 +54,13 @@ export default function StatsAboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // ── FLICKER FIX: Prevent rendering animations until client hydrates ──
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const stats = [
     {
       id: "01",
@@ -74,6 +81,11 @@ export default function StatsAboutSection() {
       delay: 0.6,
     },
   ];
+
+  // Return a stable, empty background before hydration to eliminate the double-flicker
+  if (!isMounted) {
+    return <section className="w-full bg-[#050505] py-24 md:py-32"></section>;
+  }
 
   return (
     <section className="w-full bg-[#050505] py-24 md:py-32" ref={ref}>
@@ -132,9 +144,10 @@ export default function StatsAboutSection() {
             <div className="flex items-center gap-4">
               <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/10">
                 <Image
-                  src="/slick-33.png" // Swap with your actual client avatar image
+                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Realistic client picture
                   alt="Alisson Backer"
                   fill
+                  unoptimized // Crucial for external URLs without next.config.js setup
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
                 />
               </div>

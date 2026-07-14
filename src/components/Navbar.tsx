@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation'; // <-- Imported for route detection
 import { 
   ArrowRight, 
   Menu, 
@@ -21,6 +22,8 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname(); // <-- Get current route
+  const isHome = pathname === "/"; // <-- Check if we are on the homepage
 
   // Lock Body Scroll when Mobile Menu is Open
   useEffect(() => {
@@ -62,17 +65,22 @@ export default function Navbar() {
         <div className="w-full md:w-[70vw] max-w-[1200px] flex items-center justify-between pointer-events-auto">
           
           {/* ==========================================
-              LEFT: LOGO (HIDDEN ON MOBILE, VISIBLE ON DESKTOP)
+              LEFT: LOGO (HIDDEN ON MOBILE, HIDDEN ON DESKTOP HOMEPAGE)
           ========================================== */}
-          <Link href="/" className="hidden md:block relative md:w-40 md:h-20 shrink-0 transition-transform duration-500 hover:scale-110">
-            <Image 
-              src="/slick/slick-logo.png" 
-              alt="Logo" 
-              fill
-              className="object-contain drop-shadow-md"
-              priority
-            />
-          </Link>
+          {!isHome ? (
+            <Link href="/" className="hidden md:block relative md:w-40 md:h-20 shrink-0 transition-transform duration-500 hover:scale-110">
+              <Image 
+                src="/slick/slick-logo.png" 
+                alt="Logo" 
+                fill
+                className="object-contain drop-shadow-md"
+                priority
+              />
+            </Link>
+          ) : (
+            /* Invisible spacer keeps the layout from breaking when logo is hidden on homepage */
+            <div className="hidden md:block relative md:w-40 md:h-20 shrink-0 pointer-events-none" />
+          )}
 
           {/* ==========================================
               RIGHT: LIQUID GLASS NAV PANEL (Desktop)
@@ -105,95 +113,115 @@ export default function Navbar() {
       </div>
 
       {/* ── LUXURY FULL SCREEN OVERLAY MOBILE ENTRY ── */}
+      {/* ── LUXURY FULL SCREEN OVERLAY MOBILE ENTRY ── */}
+      {/* ── LUXURY FULL SCREEN OVERLAY MOBILE ENTRY ── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            initial="closed"
-            animate="open"
-            exit="closed"
-            variants={menuVariants}
-            className="fixed inset-0 z-[60] bg-[#0A0A0A] flex flex-col w-screen h-[100dvh] overflow-hidden"
+            /* Swoop down entry with fluid curve, dive-in exit */
+            initial={{ y: "-100%", borderBottomLeftRadius: "100%", borderBottomRightRadius: "100%" }}
+            animate={{ 
+              y: "0%", 
+              borderBottomLeftRadius: "0%", 
+              borderBottomRightRadius: "0%",
+              transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
+            }}
+            exit={{ 
+              scale: 1.15, 
+              opacity: 0, 
+              filter: "blur(15px)",
+              transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] } 
+            }}
+            className="fixed inset-0 z-[60] bg-[#050505] flex flex-col w-screen h-[100dvh] overflow-hidden origin-center"
           >
-            {/* Mobile Header Elements */}
-            <div className="flex justify-between items-center p-6 shrink-0 border-b border-white/10">
-              <div className="flex items-center gap-3">
-                {/* LARGER LOGO FOR MOBILE MENU OVERLAY */}
-                <div className="relative w-32 h-16">
-                  <Image
-                    src="/slick/slick-5.png" 
-                    alt="Logo" 
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-
+            {/* --- Minimalist Header --- */}
+            <div className="flex justify-between items-center p-6 md:p-10 shrink-0 relative z-20">
+              <span className="text-white font-black text-xl tracking-[0.4em] uppercase">
+                Slick
+              </span>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)} 
-                className="text-[#D4AF37] p-2 border border-[#D4AF37]/30 rounded-full hover:bg-[#D4AF37]/10 transition-colors"
+                className="group flex items-center gap-3 text-white transition-all duration-300"
               >
-                <X size={22} />
+                <span className="hidden sm:block text-[10px] uppercase tracking-widest font-mono group-hover:text-[#D4AF37] transition-colors">
+                  Close
+                </span>
+                <div className="p-4 bg-white/5 border border-white/10 rounded-full group-active:scale-90 group-active:bg-[#D4AF37] group-active:text-black transition-all">
+                  <X size={18} strokeWidth={2} />
+                </div>
               </button>
             </div>
 
-            {/* Vertical Flow Navigation Routes */}
-            <motion.nav 
-              variants={menuVariants}
-              className="flex flex-col gap-6 flex-grow justify-center px-8 md:px-16"
-            >
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-fit"
-                >
-                  <motion.div 
-                    variants={linkVariants}
-                    className="text-4xl font-bold tracking-tight text-white hover:text-[#D4AF37] transition-colors duration-300 flex items-center gap-4 group"
-                  >
-                    {link.name}
-                    <ArrowRight size={20} className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#D4AF37]" />
-                  </motion.div>
-                </Link>
-              ))}
+            {/* --- Massive Typography Navigation --- */}
+            <div className="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 w-full relative z-10">
+              <motion.div 
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={{
+                  open: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } },
+                  closed: { transition: { staggerChildren: 0.04, staggerDirection: -1 } }
+                }}
+                className="flex flex-col gap-2 w-full"
+              >
+                {navLinks.map((link, i) => (
+                  <div key={link.name} className="overflow-hidden w-full border-b border-white/5 pb-2 md:pb-4">
+                    <motion.div
+                      variants={{
+                        closed: { y: "120%", rotate: 2, opacity: 0 },
+                        open: { y: "0%", rotate: 0, opacity: 1, transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }
+                      }}
+                      className="origin-bottom-left"
+                    >
+                      <Link 
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="group flex items-baseline gap-6 w-full"
+                      >
+                        {/* Number Indicator */}
+                        <span className="text-gray-600 font-mono text-sm md:text-lg group-hover:text-[#D4AF37] transition-colors duration-500">
+                          0{i + 1}
+                        </span>
+                        
+                        {/* Giant Link Text */}
+                        <span className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white group-hover:translate-x-4 group-hover:text-[#D4AF37] transition-all duration-500 ease-[0.76,0,0.24,1]">
+                          {link.name}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
 
-              {/* Secondary Utility Channels */}
-              <motion.div variants={linkVariants} className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-3 font-mono text-xs uppercase tracking-widest">
-                <a href="mailto:info@slickconstruction.com" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300">
+            {/* --- Sophisticated Footer --- */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 0.8, duration: 0.8, ease: [0.76, 0, 0.24, 1] } }}
+              exit={{ opacity: 0, transition: { duration: 0.3 } }}
+              className="p-6 md:p-10 shrink-0 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 relative z-20"
+            >
+              <div className="flex flex-col gap-2 font-mono text-[10px] uppercase tracking-widest text-gray-500">
+                <a href="mailto:info@slickconstruction.com" className="hover:text-[#D4AF37] transition-colors duration-300 block">
                   info@slickconstruction.com
                 </a>
-                <a href="tel:4156109225" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300">
+                <a href="tel:4156109225" className="hover:text-[#D4AF37] transition-colors duration-300 block">
                   (415) 610-9225
                 </a>
-              </motion.div>
-            </motion.nav>
-
-            {/* Footer Segment */}
-            <motion.div 
-              variants={linkVariants}
-              className="mt-auto border-t border-white/10 p-6 shrink-0 pb-10 bg-[#111111]"
-            >
-              <div className="flex flex-row items-center justify-between gap-6">
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-gray-500">
+                  Follow
+                </span>
                 <a 
                   href="https://www.instagram.com/slick_constsf/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-white hover:text-[#D4AF37] transition-colors duration-300 w-fit"
+                  className="text-white p-3 border border-white/10 rounded-full hover:bg-white/10 hover:text-[#D4AF37] hover:border-[#D4AF37]/30 transition-all duration-300"
                 >
-                  <div className="bg-white/5 p-3 rounded-full border border-white/10">
-                    <Instagram size={16} />
-                  </div>
+                  <Instagram size={16} strokeWidth={1.5} />
                 </a>
-
-                <div className="flex flex-col gap-1 font-mono text-right">
-                  <span className="text-gray-500 text-[10px] tracking-widest uppercase">
-                    Architectural Operations
-                  </span>
-                  <span className="text-[#D4AF37] text-sm font-bold tracking-wider">
-                    CA LIC 1123494
-                  </span>
-                </div>
               </div>
             </motion.div>
 
