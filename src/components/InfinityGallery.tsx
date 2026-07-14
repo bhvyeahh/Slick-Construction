@@ -50,7 +50,8 @@ export default function InfinityGallery() {
   const renderCinematic = mounted && isDesktop && viewMode === "cinematic";
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-x-hidden bg-[#0A0A0A] min-h-screen pt-24">
+    // Removed overflow-x-hidden from here so sticky positioning works again!
+    <section ref={sectionRef} className="relative w-full bg-[#0A0A0A] min-h-screen pt-24">
       
       {/* ── HEADER & TOGGLE BUTTON ── */}
       <div className="sticky top-24 z-50 max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pointer-events-none mb-12">
@@ -132,7 +133,6 @@ function BentoGallery() {
                 alt={`Gallery photo ${idx + 1}`} 
                 fill 
                 className="object-cover transition-transform duration-[2s] group-hover:scale-105" 
-                 
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-[#D4AF37]/10 transition-colors duration-700 pointer-events-none" />
             </motion.div>
