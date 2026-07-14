@@ -60,7 +60,7 @@ export default function TextRevealSection() {
   return (
     // FIX 1: Removed overflow-hidden from the section tag so sticky works
     // FIX 2: Adjusted height to exactly 200vh
-    <section ref={containerRef} className="relative h-[300vh] w-full bg-richblack">
+    <section ref={containerRef} className="relative h-[200vh] w-full bg-richblack">
       
       {/* Sticky Frame locks exactly to the viewport */}
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden px-6 md:px-12">
