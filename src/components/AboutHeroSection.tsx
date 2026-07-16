@@ -104,15 +104,7 @@ export default function AboutHeroSection() {
           </motion.div>
 
           {/* Bottom Left Image (Mobile Fallback) */}
-          <motion.div variants={imageRevealVariants} className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-black/5 block lg:hidden">
-            <Image 
-              src="/slick/slick-5.png" 
-              alt="Modern Home Exterior" 
-              fill
-              className="object-cover"
-               
-            />
-          </motion.div>
+          
 
         </div>
       </motion.div>

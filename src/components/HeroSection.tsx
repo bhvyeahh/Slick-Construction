@@ -37,9 +37,7 @@ export default function HeroSection() {
           
           {/* TEXT CONTENT & BUTTON */}
           <div className="max-w-xl shrink-0">
-            <span className="block text-[#00000] font-mono font-bold uppercase tracking-[0.2em] text-xs md:text-sm mb-6 md:mb-6 animate-[fadeIn_1s_ease-out]">
-              SF Design-Build
-            </span>
+           
             
             {/* Increased bottom margin on mobile (mb-10) for better spacing */}
             <h1 className="text-5xl lg:text-6xl font-bold uppercase leading-[1.05] tracking-tight mb-10 md:mb-8 animate-[fadeIn_1s_ease-out_0.2s_both]">
