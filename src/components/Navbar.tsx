@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation'; // <-- Imported for route detection
+import { usePathname } from 'next/navigation';
 import { 
   ArrowRight, 
   Menu, 
@@ -22,8 +22,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname(); // <-- Get current route
-  const isHome = pathname === "/"; // <-- Check if we are on the homepage
+  const pathname = usePathname();
 
   // Lock Body Scroll when Mobile Menu is Open
   useEffect(() => {
@@ -37,7 +36,7 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  // Mobile Menu Animation Variants
+  // Mobile Menu Animation Variants (UNTOUCHED)
   const menuVariants: Variants = {
     closed: { 
       opacity: 0,
@@ -61,26 +60,27 @@ export default function Navbar() {
       {/* ── SPLIT LIQUID GLASS NAVBAR ── */}
       <div className="absolute top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
         
-        {/* 70vw Container holding both sides */}
-        <div className="w-full md:w-[70vw] max-w-[1200px] flex items-center justify-between pointer-events-auto">
+        {/* Container holding both sides */}
+        <div className="w-full md:w-[70vw] max-w-[1400px] flex items-center justify-between pointer-events-auto">
           
           {/* ==========================================
-              LEFT: LOGO (HIDDEN ON MOBILE, HIDDEN ON DESKTOP HOMEPAGE)
+              LEFT: LOGO (ALWAYS VISIBLE - MOBILE & DESKTOP)
           ========================================== */}
-          {!isHome ? (
-            <Link href="/" className="hidden md:block relative md:w-40 md:h-20 shrink-0 transition-transform duration-500 hover:scale-110">
-              <Image 
-                src="/slick/slick-logo.png" 
-                alt="Logo" 
-                fill
-                className="object-contain drop-shadow-md"
-                priority
-              />
-            </Link>
-          ) : (
-            /* Invisible spacer keeps the layout from breaking when logo is hidden on homepage */
-            <div className="hidden md:block relative md:w-40 md:h-20 shrink-0 pointer-events-none" />
-          )}
+          <Link href="/" className="relative w-48 h-28 md:w-72 md:h-28 shrink-0 transition-transform duration-500 hover:scale-105 group">
+            
+            {/* AMBIENT GLOW BACKLIGHT */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] bg-white/20 blur-[25px] rounded-[100%] pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+            
+            <Image 
+              src="/slick/slick-logo.png" 
+              alt="Logo" 
+              fill
+             
+              className="object-contain object-left drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] relative z-10"
+              priority
+              unoptimized
+            />
+          </Link>
 
           {/* ==========================================
               RIGHT: LIQUID GLASS NAV PANEL (Desktop)
@@ -100,7 +100,6 @@ export default function Navbar() {
           {/* ==========================================
               RIGHT: MOBILE TOGGLE (Liquid Glass)
           ========================================== */}
-          {/* ml-auto ensures it stays on the right side when the logo is hidden */}
           <button 
             className="md:hidden ml-auto flex items-center justify-center p-3 rounded-full bg-white/30 backdrop-blur-xl backdrop-saturate-150 border border-white/40 shadow-lg text-black hover:bg-white/40 transition-colors"
             onClick={() => setIsMobileMenuOpen(true)}
@@ -112,8 +111,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── LUXURY FULL SCREEN OVERLAY MOBILE ENTRY ── */}
-      {/* ── LUXURY FULL SCREEN OVERLAY MOBILE ENTRY ── */}
       {/* ── LUXURY FULL SCREEN OVERLAY MOBILE ENTRY ── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -135,10 +132,12 @@ export default function Navbar() {
             className="fixed inset-0 z-[60] bg-[#050505] flex flex-col w-screen h-[100dvh] overflow-hidden origin-center"
           >
             {/* --- Minimalist Header --- */}
-            <div className="flex justify-between items-center p-6 md:p-10 shrink-0 relative z-20">
-              <span className="text-white font-black text-xl tracking-[0.4em] uppercase">
-                Slick
-              </span>
+            {/* --- Premium White Header Bar --- */}
+            {/* --- Minimalist Header (Black/Default) --- */}
+            <div className="flex justify-end items-center p-6 md:p-10 shrink-0 relative z-20">
+              
+              {/* Logo removed; Button pushed to the right via justify-end */}
+
               <button 
                 onClick={() => setIsMobileMenuOpen(false)} 
                 className="group flex items-center gap-3 text-white transition-all duration-300"
@@ -150,6 +149,7 @@ export default function Navbar() {
                   <X size={18} strokeWidth={2} />
                 </div>
               </button>
+              
             </div>
 
             {/* --- Massive Typography Navigation --- */}

@@ -64,13 +64,13 @@ export default function StatsAboutSection() {
   const stats = [
     {
       id: "01",
-      value: "15+",
+      value: "25+",
       description: "Years of master craftsmanship.",
       delay: 0.2,
     },
     {
       id: "02",
-      value: "45+",
+      value: "80+",
       description: "Successful projects.",
       delay: 0.4,
     },

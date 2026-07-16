@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
+
 export default function PropertiesGrid() {
   // Animation variants for smooth reveal
-  const containerVariants : Variants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -14,7 +15,7 @@ export default function PropertiesGrid() {
     },
   };
 
-  const itemVariants : Variants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
@@ -24,7 +25,7 @@ export default function PropertiesGrid() {
   };
 
   return (
-    <section className="w-full max-w-[1400px] mx-auto px-6 py-46 bg-white text-black">
+    <section className="w-full max-w-[1400px] mx-auto px-6 py-36 md:py-38 bg-white text-black">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -36,7 +37,8 @@ export default function PropertiesGrid() {
           
           {/* 1. Heading */}
           <motion.div variants={itemVariants} className="lg:border-r border-gray-200 lg:pr-12">
-            <h2 className="text-5xl md:text-7xl font-serif tracking-tight leading-[1.1]">
+            {/* Removed font-serif, added font-light and tracking-tighter for a modern luxury feel */}
+            <h2 className="text-5xl md:text-7xl font-light tracking-tighter leading-[1.1]">
               Our<br />
               Properties
             </h2>
@@ -44,20 +46,20 @@ export default function PropertiesGrid() {
 
           {/* 2. Middle Subtitle */}
           <motion.div variants={itemVariants} className="lg:border-r border-gray-200 lg:px-12 pt-8 lg:pt-0 flex items-center">
-            <p className="text-xs md:text-sm font-mono uppercase tracking-wide leading-relaxed font-semibold max-w-md">
+            {/* Removed font-mono and uppercase. Made it a clean, soft paragraph. */}
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-md font-normal">
               Discover our handpicked properties in prime locations, selected for their design, comfort, and long-term value.
             </p>
           </motion.div>
 
           {/* 3. Link / CTA */}
           <motion.div variants={itemVariants} className="lg:pl-12 pt-8 lg:pt-0 flex items-center lg:justify-end">
+            {/* Removed font-mono, kept it clean and medium weight */}
             <a
               href="#"
-              className="group flex items-center text-xs font-mono uppercase font-bold tracking-wider hover:text-gray-500 transition-colors"
+              className="group flex items-center text-sm font-medium tracking-wide hover:text-gray-500 transition-colors"
             >
               See All Properties - Scroll Down
-              {/* Custom Long Arrow */}
-              
             </a>
           </motion.div>
         </div>
@@ -70,13 +72,14 @@ export default function PropertiesGrid() {
             <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
               <Image
                 src="/Green-Street/green-4.png"
-                alt="Soriyano Residence"
+                alt="Green Street Residence"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700 ease-in-out"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
-            <div className="flex justify-between items-center mt-4 text-[11px] font-mono font-bold uppercase tracking-widest">
+            {/* Removed font-mono, adjusted to small, medium-weight uppercase for elegant labels */}
+            <div className="flex justify-between items-center mt-4 text-xs font-medium uppercase tracking-widest text-gray-900">
               <span></span>
               <span>Green Street</span>
             </div>
@@ -84,20 +87,18 @@ export default function PropertiesGrid() {
 
           {/* Middle Column (DOWN) */}
           <motion.div variants={itemVariants} className="flex flex-col">
-            {/* Text pushed above image to create the 'down' layout */}
-            <p className="text-[11px] font-mono uppercase tracking-wide leading-relaxed font-semibold mb-6">
-              Located in a strategic area, this residence combines contemporary architecture with thoughtfully planned living spaces—perfect for families and long-term investment.
-            </p>
+            {/* Softened the description text to match the default luxury font styling */}
+            
             <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
               <Image
                 src="/Mission-Street/mission-1.png"
-                alt="Marendra Residence"
+                alt="Mission Street Residence"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700 ease-in-out"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
-            <div className="flex justify-between items-center mt-4 text-[11px] font-mono font-bold uppercase tracking-widest">
+            <div className="flex justify-between items-center mt-4 text-xs font-medium uppercase tracking-widest text-gray-900">
               <span></span>
               <span>Mission Street</span>
             </div>
@@ -109,20 +110,17 @@ export default function PropertiesGrid() {
               <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
                 <Image
                   src="/slick/slick-19.png"
-                  alt="Brastana House"
+                  alt="Twin Peaks Project"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-700 ease-in-out"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
-              <div className="flex justify-between items-center mt-4 text-[11px] font-mono font-bold uppercase tracking-widest">
+              <div className="flex justify-between items-center mt-4 text-xs font-medium uppercase tracking-widest text-gray-900">
                 <span></span>
-                <span>Brastana House</span>
+                <span>Twin Peaks Project</span>
               </div>
             </div>
-
-            {/* Pagination Controls */}
-            
           </motion.div>
           
         </div>

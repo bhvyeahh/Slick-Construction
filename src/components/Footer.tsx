@@ -38,10 +38,10 @@ export default function Footer() {
           {/* 1. Logo & Vision (Spans 4 columns) */}
           <div className="lg:col-span-4 flex flex-col items-start gap-6">
   <h2
-    className="text-5xl sm:text-6xl md:text-5xl lg:text-5xl font-black uppercase tracking-tight leading-none"
+    className="text-2xl sm:text-2xl md:text-2xl lg:text-2xl font-black uppercase tracking-tight leading-none"
     style={{ letterSpacing: "-0.06em" }}
   >
-    SLICK
+    A Home is built with Love & Dreams!
   </h2>
 
   <p className="text-gray-400 font-medium text-lg leading-relaxed max-w-sm">

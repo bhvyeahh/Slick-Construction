@@ -10,25 +10,25 @@ import { motion, useInView } from "framer-motion";
 const testimonials = [
   {
     id: 1,
-    quote: "They kept the site incredibly clean and actually finished a week ahead of schedule. Highly recommend their team.",
+    quote: "Slick Construction kept the site incredibly clean and actually finished a week ahead of schedule. Highly recommend Nick and his team.",
     name: "Michael Vance",
     role: "Homeowner",
   },
   {
     id: 2,
-    quote: "No hidden fees and no endless delays. They told us what the remodel would cost upfront and delivered perfectly.",
+    quote: "No hidden fees and no endless delays. Nick told us what the remodel would cost upfront and delivered perfectly.",
     name: "Lisa Chen",
     role: "Property Owner",
   },
   {
     id: 3,
-    quote: "The custom tile work in our master bath is flawless. You can tell they really care about the small details.",
+    quote: "The custom tile work in our master bath is flawless. You can tell Nick really care about the small details.",
     name: "Robert Gallagher",
     role: "Residential Client",
   },
   {
     id: 4,
-    quote: "Renovating is usually a nightmare, but their crew made the entire process completely painless from start to finish.",
+    quote: "Renovating is usually a nightmare, but Nick's crew at Slick Construction made the entire process completely painless from start to finish.",
     name: "Anita Desai",
     role: "Real Estate Investor",
   },

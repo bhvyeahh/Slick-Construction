@@ -92,7 +92,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <Navbar />
+    
       {/* Removed font-sans to let your global theme take over */}
       <main ref={mainRef} className="w-full bg-[#FFFFFF] text-[#1A1A1A] min-h-screen">
         <section className="pt-40 pb-24 px-6 md:px-12 lg:px-24 max-w-[1200px] mx-auto min-h-[80vh] flex items-center">

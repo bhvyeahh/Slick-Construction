@@ -29,7 +29,7 @@ const properties = [
   },
   {
     id: 3,
-    title: "Dallas Townhouse",
+    title: "Noe Valley Project",
     price: "$9,800",
     beds: "3",
     baths: "2",
@@ -38,7 +38,7 @@ const properties = [
   },
   {
     id: 4,
-    title: "Urban Modern House",
+    title: "San Mateo project",
     price: "$34,000",
     beds: "4+",
     baths: "3",

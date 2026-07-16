@@ -28,7 +28,7 @@ const servicesData = [
     id: "02",
     title: "Kitchen Remodeling",
     description: "The heart of your home deserves a masterfully crafted upgrade. From chef-grade appliance integration to stunning custom islands, we build breathtaking kitchens engineered for both high-end entertaining and daily family life.",
-    image: "/slick/slick-14.png", 
+    image: "/slick/slick-37.jpg", 
     pointsTitle: "Specialties",
     points: [
       "Chef-grade appliance integration",
