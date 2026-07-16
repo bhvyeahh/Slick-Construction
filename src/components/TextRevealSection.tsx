@@ -16,12 +16,13 @@ function Word({
   range: [number, number];
 }) {
   const opacity = useTransform(progress, range, [0, 1]);
-  const filter = useTransform(progress, range, ["blur(10px)", "blur(0px)"]);
+  // Removed the blur filter to fix the mobile rendering glitch
   const y = useTransform(progress, range, ["12px", "0px"]);
 
   return (
     <motion.span
-      style={{ opacity, filter, y }}
+      // Added willChange to force hardware acceleration on mobile GPUs
+      style={{ opacity, y, willChange: "opacity, transform" }}
       className="mr-[0.25em] inline-block font-medium text-gold"
     >
       {children}
@@ -58,9 +59,8 @@ export default function TextRevealSection() {
   const totalWords = words.length;
 
   return (
-    // FIX 1: Removed overflow-hidden from the section tag so sticky works
-    // FIX 2: Adjusted height to exactly 200vh
-    <section ref={containerRef} className="relative h-[200vh] w-full bg-richblack">
+    // FIX 1: Changed h-[200vh] to h-[200svh] to prevent mobile address bar jumping
+    <section ref={containerRef} className="relative h-[200svh] w-full bg-richblack">
       
       {/* Sticky Frame locks exactly to the viewport */}
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden px-6 md:px-12">
