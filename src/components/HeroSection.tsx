@@ -16,10 +16,9 @@ export default function HeroSection() {
     <main className="w-full bg-[#0A0A0A] text-white overflow-x-hidden">
       
       {/* --- TOP FOLD (100svh for stable mobile height) --- */}
-      {/* FIX 1: Changed h-[100dvh] to h-[100svh] to prevent jumping on mobile browsers */}
       <section className="relative h-[100svh] lg:min-h-screen flex flex-col justify-center">
         
-        {/* Background Image & Intelligent Gradients (BRIGHTENED) */}
+        {/* Background Image (RESTORED TO BRIGHT & NATURAL) */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <Image 
             src="/slick/slick-19.png" 
@@ -28,21 +27,29 @@ export default function HeroSection() {
             priority
             className="object-cover object-center animate-[pulse_1s_ease-in-out]"
           />
-         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/55 to-transparent lg:bg-gradient-to-r lg:from-[#0A0A0A]/90 lg:from-[20%] lg:via-[#0A0A0A]/60 lg:via-[45%] lg:to-[#0A0A0A]/20" />
+          {/* Empty div kept as requested, no dark gradients or blurs applied to the image itself */}
+          <div className="absolute inset-0 " />
         </div>
 
         {/* --- CONTENT WRAPPER --- */}
-        {/* FIX 2: Added pt-28 lg:pt-0 to ensure the text never hits the navbar on short screens */}
         <div className="relative z-10 w-full h-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 xl:px-24 flex flex-col justify-center pt-28 lg:pt-0">
           
           {/* TEXT CONTENT & BUTTON */}
           <div className="max-w-xl shrink-0">
             
-           <h1 className="text-5xl lg:text-6xl font-bold uppercase leading-[1.05] tracking-tight mb-10 md:mb-8 animate-[fadeIn_1s_ease-out_0.2s_both] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] lg:drop-shadow-none">
-  <span className="font-serif italic text-gray-200 normal-case"> To Building <br /> Better Everyday.</span>
-</h1>
+            {/* UPDATED: Applied intense custom text-shadow to anchor the text over the bright image */}
+            <h1 
+              className="text-5xl lg:text-6xl font-bold uppercase leading-[1.05] tracking-tight mb-10 md:mb-8 animate-[fadeIn_1s_ease-out_0.2s_both]"
+              style={{ textShadow: "0px 4px 25px rgba(0, 0, 0, 0.9), 0px 0px 15px rgba(0, 0, 0, 0.7)" }}
+            >
+              <span className="font-serif italic text-white normal-case"> Building <br /> Better Everyday</span>
+            </h1>
             
-            <p className="text-gray-300 text-lg leading-relaxed mb-14 md:mb-10 lg:mb-12 font-medium animate-[fadeIn_1s_ease-out_0.4s_both]">
+            {/* UPDATED: Custom text-shadow on the paragraph for maximum legibility */}
+            <p 
+              className="text-white text-lg leading-relaxed mb-14 md:mb-10 lg:mb-12 font-medium animate-[fadeIn_1s_ease-out_0.4s_both]"
+              style={{ textShadow: "0px 2px 10px rgba(0, 0, 0, 0.9), 0px 0px 20px rgba(0, 0, 0, 0.6)" }}
+            >
               Seamless builds and precision finishes. We deliver your vision from concept to completion.
             </p>
             
@@ -57,10 +64,13 @@ export default function HeroSection() {
             
             {/* --- MOBILE ONLY SCROLL INDICATOR --- */}
             <div className="flex md:hidden flex-col items-center mt-12 animate-[fadeIn_1s_ease-out_1s_both]">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-400 mb-3">
+              <span 
+                className="text-[10px] font-mono uppercase tracking-[0.2em] text-white mb-3 font-semibold"
+                style={{ textShadow: "0px 2px 8px rgba(0, 0, 0, 1)" }}
+              >
                 Scroll Below
               </span>
-              <div className="p-2 rounded-full border border-white/10 bg-white/5">
+              <div className="p-2 rounded-full border border-white/20 bg-black/40 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.5)]">
                 <ArrowDown className="w-4 h-4 text-[#D4AF37] animate-bounce" />
               </div>
             </div>

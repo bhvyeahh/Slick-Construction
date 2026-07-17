@@ -24,6 +24,9 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Check if we are on the Home page
+  const isHome = pathname === "/";
+
   // Lock Body Scroll when Mobile Menu is Open
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -67,20 +70,34 @@ export default function Navbar() {
               LEFT: LOGO (ALWAYS VISIBLE - MOBILE & DESKTOP)
           ========================================== */}
           <Link href="/" className="relative w-48 h-28 md:w-72 md:h-28 shrink-0 transition-transform duration-500 hover:scale-105 group">
-  
-  {/* AMBIENT GLOW BACKLIGHT */}
-  {/* Increased to bg-white/50 and opacity-100 on mobile to make it pop, reverts to subtle on md: */}
-  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[70%] bg-white/50 md:bg-white/20 blur-[20px] md:blur-[25px] rounded-[100%] pointer-events-none opacity-100 md:opacity-50 group-hover:opacity-60 transition-opacity duration-500 z-0" />
-  
-  <Image 
-    src="/slick/slick-logo.png" 
-    alt="Logo" 
-    fill
-    
-    className="object-contain object-left drop-shadow-[0_0_25px_rgba(255,255,255,0.8)] md:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] relative z-10"
-    priority
-  />
-</Link>
+            
+            {/* AMBIENT GLOW BACKLIGHT */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[70%] bg-white/50 md:bg-white/20 blur-[20px] md:blur-[25px] rounded-[100%] pointer-events-none opacity-100 md:opacity-50 group-hover:opacity-60 transition-opacity duration-500 z-0" />
+            
+            <div className="relative w-full h-full z-10">
+              {/* Home Page Logo - Instantly hides on mobile, smooth fades on desktop */}
+              <Image 
+                src="/logo.png" 
+                alt="Logo" 
+                fill
+                className={`object-contain object-left drop-shadow-[0_0_25px_rgba(255,255,255,0.8)] md:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] md:transition-opacity md:duration-500 ${
+                  isHome ? 'opacity-100' : 'opacity-0'
+                }`}
+                priority
+              />
+              
+              {/* Internal Pages Logo - Instantly shows on mobile, smooth fades on desktop */}
+              <Image 
+                src="/slick/slick-logo.png" 
+                alt="Logo" 
+                fill
+                className={`object-contain object-left drop-shadow-[0_0_25px_rgba(255,255,255,0.8)] md:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] md:transition-opacity md:duration-500 ${
+                  !isHome ? 'opacity-100' : 'opacity-0'
+                }`}
+                priority
+              />
+            </div>
+          </Link>
 
           {/* ==========================================
               RIGHT: LIQUID GLASS NAV PANEL (Desktop)
@@ -131,13 +148,9 @@ export default function Navbar() {
             }}
             className="fixed inset-0 z-[60] bg-[#050505] flex flex-col w-screen h-[100dvh] overflow-hidden origin-center"
           >
-            {/* --- Minimalist Header --- */}
-            {/* --- Premium White Header Bar --- */}
             {/* --- Minimalist Header (Black/Default) --- */}
             <div className="flex justify-end items-center p-6 md:p-10 shrink-0 relative z-20">
               
-              {/* Logo removed; Button pushed to the right via justify-end */}
-
               <button 
                 onClick={() => setIsMobileMenuOpen(false)} 
                 className="group flex items-center gap-3 text-white transition-all duration-300"

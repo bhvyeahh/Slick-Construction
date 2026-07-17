@@ -40,7 +40,7 @@ const services = [
     category: "Upgrades",
     title: "Seismic Upgrades",
     description: "Protect your investment and your family with structural reinforcements designed to withstand major seismic activity.",
-    image: "/slick/slick-40.jpeg",
+    image: "/slick/slick-40.png",
   }
 ];
 

@@ -39,8 +39,8 @@ export default function PropertiesGrid() {
           <motion.div variants={itemVariants} className="lg:border-r border-gray-200 lg:pr-12">
             {/* Removed font-serif, added font-light and tracking-tighter for a modern luxury feel */}
             <h2 className="text-5xl md:text-7xl font-light tracking-tighter leading-[1.1]">
-              Our<br />
-              Properties
+              Recent<br />
+              Projects
             </h2>
           </motion.div>
 

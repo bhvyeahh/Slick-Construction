@@ -78,12 +78,16 @@ export default function TrustConfidenceSection() {
             >
               
               <motion.h2 
-                variants={revealVariant}
-                className="text-4xl md:text-5xl lg:text-[4rem] leading-[1.05] font-light tracking-tighter text-[#111111]"
-              >
-                From a small village in Ireland to the <br className="hidden md:block" />
-                <span className="font-serif italic text-[#D4AF37] font-medium">SF Bay.</span>
-              </motion.h2>
+  variants={revealVariant}
+  className="text-4xl md:text-5xl lg:text-4xl leading-[1.1] font-bold tracking-tight text-[#111111] uppercase"
+>
+  From a small coastal village in Ireland, <br className="hidden md:block" />
+  to the <span className="font-serif italic text-[#D4AF37] normal-case">California Coast.</span>
+  
+  <span className="block mt-6 text-3xl md:text-3xl text-gray-600 font-medium normal-case tracking-normal">
+    Bringing authentic Irish craftsmanship to the San Francisco Bay Area.
+  </span>
+</motion.h2>
 
               <div className="space-y-6 text-lg md:text-xl text-gray-600 font-normal leading-relaxed">
                 <motion.p variants={revealVariant}>

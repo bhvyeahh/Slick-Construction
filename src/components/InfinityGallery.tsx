@@ -14,7 +14,7 @@ const baseImages = Array.from({ length: 32 }, (_, i) => i + 1)
 const newImages = [
   "/slick/slick-38.jpeg",
   "/slick/slick-39.jpeg",
-  "/slick/slick-40.jpeg",
+  "/slick/slick-40.png",
 ];
 
 const galleryImages = [...baseImages, ...newImages];

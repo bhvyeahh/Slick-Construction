@@ -23,24 +23,24 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full lg:w-1/2 max-w-xl"
+            className="w-full lg:w-1/2 max-w-lg"
           >
-            {/* Golden Accent Tag */}
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-[2px] bg-[#D4AF37]" />
-              <span className="text-[#D4AF37] font-mono text-sm font-bold uppercase tracking-[0.2em]">
+            {/* Golden Accent Tag - Reduced to text-xs */}
+            <div className="flex items-center gap-4 mb-6 md:mb-8">
+              <div className="w-10 md:w-12 h-[2px] bg-[#D4AF37]" />
+              <span className="text-[#D4AF37] font-mono text-xs font-bold uppercase tracking-[0.2em]">
                 Our Expertise
               </span>
             </div>
             
-            {/* Main Headline */}
-            <h1 className="text-5xl md:text-7xl lg:text-[5rem] font-bold tracking-tight leading-[1.05] mb-8 text-[#111] uppercase">
+            {/* Main Headline - Scaled down to 4xl/5xl/6xl for a less chunky look */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 md:mb-8 text-[#111] uppercase">
               Mastering <br />
               The <span className="font-serif italic text-[#D4AF37] normal-case">Details.</span>
             </h1>
             
-            {/* Subtitle */}
-            <p className="text-lg md:text-xl text-gray-600 font-medium leading-relaxed">
+            {/* Subtitle - Reduced size and added max-w-md to control line length */}
+            <p className="text-base md:text-lg text-gray-600 font-medium leading-relaxed max-w-md">
               Flawless execution and premium materials. We deliver high-end custom homes and transformative remodels.
             </p>
           </motion.div>
@@ -53,7 +53,7 @@ export default function ServicesPage() {
             className="w-full lg:w-1/2 relative h-[400px] md:h-[500px] rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl"
           >
             <Image 
-              src="/slick-33.png" // Update this path to your preferred image
+              src="/slick/slick-42.png" // Update this path to your preferred image
               alt="Slick Construction Expertise" 
               fill
               priority

@@ -14,7 +14,7 @@ const servicesData = [
     id: "01",
     title: "Bathroom Remodeling",
     description: "Transform your daily routine with a luxury, spa-inspired bathroom. We specialize in optimizing spatial layouts, executing flawless tilework, and installing premium fixtures to create your perfect private retreat.",
-    image: "/slick/slick-34.png",
+    image: "/slick/slick-22.png",
     pointsTitle: "Key Upgrades",
     points: [
       "Custom walk-in showers & wet rooms",
@@ -56,7 +56,7 @@ const servicesData = [
     id: "05", 
     title: "Seismic Upgrades",
     description: "Protect your investment and ensure your family's safety with professional seismic retrofitting. We reinforce your home's structural framing and foundation to withstand seismic activity, providing ultimate peace of mind and long-term stability.",
-    image: "/slick/slick-40.jpeg", // Change this number to whatever your seismic image is named
+    image: "/slick/slick-40.png", // Change this number to whatever your seismic image is named
     pointsTitle: "Specialties",
     points: [
       "Foundation anchor bolts & epoxy retrofitting",
