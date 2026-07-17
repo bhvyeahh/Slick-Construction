@@ -68,7 +68,7 @@ export default function FuturisticServicesTakeover() {
             <div
               key={service.id}
               className={`absolute inset-0 transition-opacity duration-[1.5s] ease-in-out ${
-                isActive ? "opacity-1000 z-10" : "opacity-0 z-0"
+                isActive ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
             >
               <Image
@@ -108,14 +108,13 @@ export default function FuturisticServicesTakeover() {
           </div>
         </div>
 
-        {/* Interactive List */}
-        <div className="flex flex-col w-full border-t border-white/10 relative">
+        {/* Interactive List - Added [overflow-anchor:none] to prevent browser scroll jumping */}
+        <div className="flex flex-col w-full border-t border-white/10 relative [overflow-anchor:none]">
           {services.map((service, index) => {
             const isActive = activeIndex === index;
 
             return (
               <motion.div
-                layout
                 key={service.id}
                 onMouseEnter={() => !isMobile && setActiveIndex(index)}
                 onViewportEnter={() => isMobile && setActiveIndex(index)}
@@ -188,7 +187,7 @@ export default function FuturisticServicesTakeover() {
                     </div>
                   </div>
 
-                  {/* Mobile Description Reveal - Handled smoothly via layout prop */}
+                  {/* Mobile Description Reveal - Handles its own height animation now */}
                   <AnimatePresence>
                     {isActive && isMobile && (
                       <motion.div
