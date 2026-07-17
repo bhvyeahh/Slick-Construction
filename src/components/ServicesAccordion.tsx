@@ -1,165 +1,216 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const services = [
   {
     id: "01",
     category: "Full Remodel",
     title: "Full Home Remodel",
-    image: "/slick/slick-6.png",
+    description: "Transform your entire living space from the ground up. We handle everything from structural changes to fine interior detailing.",
+    image: "/slick/home.avif",
   },
   {
     id: "02",
     category: "Kitchens",
     title: "Kitchen Remodel",
+    description: "Upgrade the heart of your home with custom cabinetry, premium countertops, and state-of-the-art appliance integration.",
     image: "/slick/slick-25.png",
   },
   {
     id: "03",
     category: "Bathrooms",
     title: "Bathroom Remodel",
-    image: "/slick/slick-31.png",
+    description: "Create your personal spa retreat with modern fixtures, custom tiling, and optimized lighting and plumbing layouts.",
+    image: "/slick/slick-2.png",
   },
   {
     id: "04",
     category: "Extensions",
     title: "Deck Builds",
+    description: "Expand your outdoor living space with premium, weather-resistant decks designed for entertaining and relaxation.",
     image: "/slick/slick-35.jpeg",
   },
+  {
+    id: "05",
+    category: "Upgrades",
+    title: "Seismic Upgrades",
+    description: "Protect your investment and your family with structural reinforcements designed to withstand major seismic activity.",
+    image: "/slick/slick-40.jpeg",
+  }
 ];
 
-export default function ServicesAccordion() {
-  // Start with the first card expanded
-  const [expandedIndex, setExpandedIndex] = useState<number>(0);
+export default function FuturisticServicesTakeover() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
+
+  // Detect if the user is on a mobile device for scroll-spy logic
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // Initial check
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
-    <section className="w-full bg-richblack py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
-        
-        {/* ── HEADER ── */}
-        <div className="mb-12 flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-          <div className="w-full md:w-1/2">
-            <div className="mb-6 flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-sm font-semibold tracking-wide text-gold uppercase">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
-                <circle cx="12" cy="12" r="10" />
-                <circle cx="12" cy="12" r="4" />
-              </svg>
-              Our Services
+    <section className="relative w-full min-h-screen bg-[#050505] overflow-hidden flex flex-col justify-center py-20 md:py-24">
+      
+      {/* ── BACKGROUND IMAGE TAKEOVER ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {services.map((service, index) => {
+          const isActive = activeIndex === index;
+          return (
+            <div
+              key={service.id}
+              className={`absolute inset-0 transition-opacity duration-[1.5s] ease-in-out ${
+                isActive ? "opacity-1000 z-10" : "opacity-0 z-0"
+              }`}
+            >
+              <Image
+                src={service.image}
+                alt={service.title}
+                fill
+                className={`object-cover object-center transition-transform duration-[10s] ease-out ${
+                  isActive ? "scale-105" : "scale-100"
+                }`}
+                priority={index === 0}
+              />
             </div>
-            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]">
-              Everything you <br />
-              need for your home
+          );
+        })}
+
+        {/* Heavy gradient overlays to ensure text is perfectly readable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-[#050505]/40 z-20" />
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[4px] z-20" />
+      </div>
+
+      {/* ── CONTENT ── */}
+      <div className="relative z-30 mx-auto w-full max-w-[1200px] px-6 md:px-12 flex flex-col h-full">
+        
+        {/* Header */}
+        <div className="mb-12 md:mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div className="w-full md:w-[55%]">
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
+              Beyond <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/90 to-white/40 italic font-serif">Expectations.</span>
             </h2>
           </div>
           
-          <div className="w-full md:w-1/3">
-            <p className="text-lg text-gray-400 font-medium">
-              Built to simplify your home search with clear insights, better options, and confident decisions.
+          <div className="w-full md:w-[40%]">
+            <p className="text-base md:text-lg text-gray-300 font-medium leading-relaxed">
+              Engineered for the future. We don't just remodel homes; we redefine how you experience your living space.
             </p>
           </div>
         </div>
 
-        {/* ── ACCORDION GRID ── */}
-        <div className="flex h-[800px] flex-col gap-4 md:h-[600px] md:flex-row md:gap-6">
+        {/* Interactive List */}
+        <div className="flex flex-col w-full border-t border-white/10 relative">
           {services.map((service, index) => {
-            const isActive = expandedIndex === index;
+            const isActive = activeIndex === index;
 
             return (
               <motion.div
-                key={service.id}
                 layout
-                onClick={() => setExpandedIndex(index)}
-                className={`relative cursor-pointer overflow-hidden rounded-[2rem] transition-all duration-500 ${
-                  isActive 
-                    ? "bg-[#050505] border border-gold/40 shadow-lg shadow-gold/10" 
-                    : "bg-charcoal border border-white/5 hover:border-gold/30"
+                key={service.id}
+                onMouseEnter={() => !isMobile && setActiveIndex(index)}
+                onViewportEnter={() => isMobile && setActiveIndex(index)}
+                onClick={() => router.push("/services")}
+                viewport={{ margin: "-35% 0px -35% 0px" }}
+                className={`group relative cursor-pointer transition-colors duration-500 border-b ${
+                  isActive ? "border-transparent z-20" : "border-white/10 z-10"
                 }`}
-                style={{
-                  flex: isActive ? 3 : 1,
-                }}
-                transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}
               >
-                
-                {/* ── INACTIVE STATE ── */}
-                <AnimatePresence mode="wait">
-                  {!isActive && (
-                    <motion.div
-                      key="inactive"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute inset-0 flex h-full w-full flex-col p-8"
-                    >
-                      {/* Giant Number in Center */}
-                      <div className="flex flex-1 items-center justify-center">
-                        <span className="text-7xl font-bold text-white/5 md:text-8xl">
-                          .{service.id}
-                        </span>
-                      </div>
+                {/* Gliding Glass Background (Smooth Layout ID Transition) */}
+                {isActive && (
+                  <motion.div
+                    layoutId="active-pill"
+                    className="absolute -inset-x-4 md:-inset-x-8 inset-y-0 bg-black/50 backdrop-blur-md border border-white/5 rounded-2xl z-0 shadow-2xl"
+                    transition={{ type: "spring", bounce: 0.15, duration: 0.6 }}
+                  />
+                )}
+
+                {/* Main Row Content - Consistent padding avoids all vertical stutter */}
+                <div className="relative z-10 flex flex-col py-6 md:py-8">
+                  
+                  <div className="flex flex-col md:flex-row md:items-center justify-between w-full">
+                    {/* Left Side: Number & Title */}
+                    <div className="flex items-center gap-6 md:gap-10">
+                      <span className={`text-xl md:text-3xl font-bold transition-colors duration-500 ${
+                        isActive ? "text-[#D4AF37]" : "text-white/20 group-hover:text-white/40"
+                      }`}>
+                        .{service.id}
+                      </span>
                       
-                      {/* Bottom Text */}
                       <div className="flex flex-col">
-                        <span className="mb-2 text-xs font-semibold text-gold-muted">
+                        <span className={`text-[10px] md:text-xs font-bold tracking-widest uppercase mb-1 transition-colors duration-500 ${
+                          isActive ? "text-[#D4AF37]" : "text-gray-500"
+                        }`}>
                           {service.category}
                         </span>
-                        <h3 className="text-xl font-bold text-gray-300 leading-tight">
+                        <h3 className={`text-2xl md:text-4xl font-bold transition-all duration-500 origin-left ${
+                          isActive ? "text-white scale-[1.02]" : "text-gray-400 group-hover:text-gray-200 scale-100"
+                        }`}>
                           {service.title}
                         </h3>
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    </div>
 
-                {/* ── ACTIVE STATE ── */}
-                <AnimatePresence mode="wait">
-                  {isActive && (
-                    <motion.div
-                      key="active"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.4, delay: 0.2 }}
-                      className="absolute inset-0 h-full w-full"
-                    >
-                      {/* Top Content Row */}
-                      <div className="absolute top-0 left-0 right-0 z-20 flex justify-between p-8 md:p-10">
-                        <div className="flex flex-col">
-                          <span className="mb-2 text-sm font-medium text-gold-muted">
-                            {service.category}
-                          </span>
-                          <h3 className="text-2xl md:text-3xl font-bold text-white max-w-[200px] leading-tight">
-                            {service.title}
-                          </h3>
-                        </div>
-                        <span className="text-6xl md:text-7xl font-bold text-gold">
-                          .{service.id}
-                        </span>
+                    {/* Right Side: Description Reveal & Icon */}
+                    <div className="mt-4 md:mt-0 flex items-center justify-end relative pl-14 md:pl-0">
+                      
+                      {/* Desktop Description - Absolutely positioned so it CANNOT cause layout shift */}
+                      <div className="hidden md:flex absolute right-[4.5rem] justify-end w-[400px] pointer-events-none">
+                        <AnimatePresence>
+                          {isActive && (
+                            <motion.p
+                              initial={{ opacity: 0, filter: "blur(4px)", x: 15 }}
+                              animate={{ opacity: 1, filter: "blur(0px)", x: 0 }}
+                              exit={{ opacity: 0, filter: "blur(4px)", x: -15 }}
+                              transition={{ duration: 0.4, delay: 0.1 }}
+                              className="text-gray-300 text-sm leading-relaxed text-right w-full"
+                            >
+                              {service.description}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
                       </div>
 
-                      {/* Image Container (Takes up bottom portion) */}
-                      <div className="absolute bottom-0 left-0 right-0 h-[65%] w-full overflow-hidden rounded-t-[2rem]">
-                        <Image
-                          src={service.image}
-                          alt={service.title}
-                          fill
-                          className="object-cover object-bottom"
-                           
-                        />
-                        {/* Gradient to blend image into the dark background */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#050505]" />
+                      <div className={`flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border transition-all duration-500 shrink-0 ${
+                        isActive ? "border-[#D4AF37] bg-[#D4AF37] text-black rotate-45" : "border-white/20 text-white group-hover:border-white/50"
+                      }`}>
+                        <ArrowUpRight size={18} className={isActive ? "scale-110" : ""} />
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    </div>
+                  </div>
 
+                  {/* Mobile Description Reveal - Handled smoothly via layout prop */}
+                  <AnimatePresence>
+                    {isActive && isMobile && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="pl-14 overflow-hidden block md:hidden pointer-events-none"
+                      >
+                        <p className="text-gray-300 text-sm leading-relaxed mt-4">
+                          {service.description}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                </div>
               </motion.div>
             );
           })}
         </div>
+
       </div>
     </section>
   );

@@ -5,10 +5,19 @@ import Image from "next/image";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { LayoutGrid, Sparkles } from "lucide-react";
 
-// Generate array for all 35 images, explicitly skipping 4 and 5
-const galleryImages = Array.from({ length: 32 }, (_, i) => i + 1)
+// Generate array for the original 30 images, explicitly skipping 4 and 5,
+// and append the 3 new .jpeg images at the end.
+const baseImages = Array.from({ length: 32 }, (_, i) => i + 1)
   .filter((num) => num !== 4 && num !== 5)
   .map((num) => `/slick/slick-${num}.png`);
+
+const newImages = [
+  "/slick/slick-38.jpeg",
+  "/slick/slick-39.jpeg",
+  "/slick/slick-40.jpeg",
+];
+
+const galleryImages = [...baseImages, ...newImages];
 
 // ─────────────────────────────────────────────────────────────────
 // MAIN PARENT COMPONENT (Handles the Toggle State)
@@ -144,7 +153,7 @@ function BentoGallery() {
 }
 
 // ─────────────────────────────────────────────────────────────────
-// SUB-COMPONENT 2: THE INFINITY CASTLE (5 Phases)
+// SUB-COMPONENT 2: THE INFINITY CASTLE (Now 6 Phases)
 // ─────────────────────────────────────────────────────────────────
 function CinematicExperience() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -175,19 +184,28 @@ function CinematicExperience() {
   const monolithHeight = useTransform(scrollYProgress, [0.35, 0.45], ["40vh", "100vh"]);
   const monolithRadius = useTransform(scrollYProgress, [0.35, 0.45], ["2rem", "0rem"]);
 
-  // ── PHASE 4: NEW PARALLAX CASCADE (The remaining 12 images: 18-29) ──
+  // ── PHASE 4: PARALLAX CASCADE (The remaining 12 images: 18-29) ──
   const phase4Opacity = useTransform(scrollYProgress, [0.48, 0.55, 0.72, 0.78], [0, 1, 1, 0]);
   const cascade1Y = useTransform(scrollYProgress, [0.5, 0.78], ["100vh", "-120vh"]);
   const cascade2Y = useTransform(scrollYProgress, [0.5, 0.78], ["150vh", "-80vh"]);
   const cascade3Y = useTransform(scrollYProgress, [0.5, 0.78], ["120vh", "-150vh"]);
 
-  // ── PHASE 5: Normalization & Twins (Images 6, 7) ──
-  const phase5Opacity = useTransform(scrollYProgress, [0.72, 0.8, 1], [0, 1, 1]);
-  const twinLeftX = useTransform(scrollYProgress, [0.75, 0.88, 1], ["-100vw", isMobile ? "0vw" : "-20vw", isMobile ? "0vw" : "-10vw"]);
-  const twinRightX = useTransform(scrollYProgress, [0.75, 0.88, 1], ["100vw", isMobile ? "0vw" : "20vw", isMobile ? "0vw" : "10vw"]);
+  // ── PHASE 5: NEW TRIO FAN-OUT (The 3 new JPEG images: indices 30, 31, 32) ──
+  const phase5Opacity = useTransform(scrollYProgress, [0.72, 0.78, 0.85, 0.88], [0, 1, 1, 0]);
+  const trioCenterScale = useTransform(scrollYProgress, [0.75, 0.85], [0.5, 1.1]);
+  const trioLeftX = useTransform(scrollYProgress, [0.75, 0.85], ["0vw", isMobile ? "-20vw" : "-25vw"]);
+  const trioRightX = useTransform(scrollYProgress, [0.75, 0.85], ["0vw", isMobile ? "20vw" : "25vw"]);
+  const trioSideY = useTransform(scrollYProgress, [0.75, 0.85], ["0vh", "5vh"]);
+  const trioSideRotateLeft = useTransform(scrollYProgress, [0.75, 0.85], ["0deg", "-6deg"]);
+  const trioSideRotateRight = useTransform(scrollYProgress, [0.75, 0.85], ["0deg", "6deg"]);
+
+  // ── PHASE 6: Normalization & Twins (Images 6, 7) ──
+  const phase6Opacity = useTransform(scrollYProgress, [0.85, 0.9, 1], [0, 1, 1]);
+  const twinLeftX = useTransform(scrollYProgress, [0.85, 0.92, 1], ["-100vw", isMobile ? "0vw" : "-20vw", isMobile ? "0vw" : "-10vw"]);
+  const twinRightX = useTransform(scrollYProgress, [0.85, 0.92, 1], ["100vw", isMobile ? "0vw" : "20vw", isMobile ? "0vw" : "10vw"]);
   
-  const finalTextOpacity = useTransform(scrollYProgress, [0.9, 0.98], [0, 1]);
-  const finalTextY = useTransform(scrollYProgress, [0.9, 0.98], ["40px", "0px"]);
+  const finalTextOpacity = useTransform(scrollYProgress, [0.94, 0.98], [0, 1]);
+  const finalTextY = useTransform(scrollYProgress, [0.94, 0.98], ["40px", "0px"]);
 
   return (
     <div ref={containerRef} className="relative h-[700vh] bg-[#0A0A0A] -mt-32">
@@ -243,7 +261,7 @@ function CinematicExperience() {
           </motion.div>
         </motion.div>
 
-        {/* ================= PHASE 4: THE NEW CASCADE ================= */}
+        {/* ================= PHASE 4: THE CASCADE ================= */}
         <motion.div 
           style={{ opacity: phase4Opacity }}
           className="absolute inset-0 w-full h-full flex items-center justify-center gap-3 md:gap-8 transform-gpu z-40"
@@ -276,9 +294,39 @@ function CinematicExperience() {
           </motion.div>
         </motion.div>
 
-        {/* ================= PHASE 5: TWINS & REVEAL ================= */}
+        {/* ================= PHASE 5: THE NEW TRIO FAN-OUT ================= */}
         <motion.div 
           style={{ opacity: phase5Opacity }}
+          className="absolute inset-0 w-full h-full flex items-center justify-center transform-gpu z-[45]"
+        >
+          {/* Left Image */}
+          <motion.div 
+            style={{ x: trioLeftX, y: trioSideY, rotate: trioSideRotateLeft }} 
+            className="absolute w-[45vw] md:w-[25vw] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 shadow-[0_0_40px_rgba(0,0,0,0.8)] z-10"
+          >
+            <Image src={galleryImages[30]} alt="New JPEG 1" fill className="object-cover" loading="eager" />
+          </motion.div>
+
+          {/* Right Image */}
+          <motion.div 
+            style={{ x: trioRightX, y: trioSideY, rotate: trioSideRotateRight }} 
+            className="absolute w-[45vw] md:w-[25vw] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 shadow-[0_0_40px_rgba(0,0,0,0.8)] z-10"
+          >
+            <Image src={galleryImages[32]} alt="New JPEG 3" fill className="object-cover" loading="eager" />
+          </motion.div>
+
+          {/* Center Image */}
+          <motion.div 
+            style={{ scale: trioCenterScale }} 
+            className="absolute w-[55vw] md:w-[30vw] aspect-[4/5] rounded-2xl overflow-hidden border border-[#D4AF37]/50 shadow-[0_0_60px_rgba(0,0,0,0.9)] z-20"
+          >
+            <Image src={galleryImages[31]} alt="New JPEG 2" fill className="object-cover" loading="eager" />
+          </motion.div>
+        </motion.div>
+
+        {/* ================= PHASE 6: TWINS & REVEAL ================= */}
+        <motion.div 
+          style={{ opacity: phase6Opacity }}
           className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-50 transform-gpu"
         >
           <div className="relative flex flex-col md:flex-row items-center justify-center w-full h-full gap-4 md:gap-0">

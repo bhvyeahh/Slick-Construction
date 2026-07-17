@@ -67,20 +67,20 @@ export default function Navbar() {
               LEFT: LOGO (ALWAYS VISIBLE - MOBILE & DESKTOP)
           ========================================== */}
           <Link href="/" className="relative w-48 h-28 md:w-72 md:h-28 shrink-0 transition-transform duration-500 hover:scale-105 group">
-            
-            {/* AMBIENT GLOW BACKLIGHT */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] bg-white/20 blur-[25px] rounded-[100%] pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-500 z-0" />
-            
-            <Image 
-              src="/slick/slick-logo.png" 
-              alt="Logo" 
-              fill
-             
-              className="object-contain object-left drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] relative z-10"
-              priority
-              unoptimized
-            />
-          </Link>
+  
+  {/* AMBIENT GLOW BACKLIGHT */}
+  {/* Increased to bg-white/50 and opacity-100 on mobile to make it pop, reverts to subtle on md: */}
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[70%] bg-white/50 md:bg-white/20 blur-[20px] md:blur-[25px] rounded-[100%] pointer-events-none opacity-100 md:opacity-50 group-hover:opacity-60 transition-opacity duration-500 z-0" />
+  
+  <Image 
+    src="/slick/slick-logo.png" 
+    alt="Logo" 
+    fill
+    
+    className="object-contain object-left drop-shadow-[0_0_25px_rgba(255,255,255,0.8)] md:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] relative z-10"
+    priority
+  />
+</Link>
 
           {/* ==========================================
               RIGHT: LIQUID GLASS NAV PANEL (Desktop)

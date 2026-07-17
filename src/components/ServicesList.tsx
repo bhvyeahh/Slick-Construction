@@ -51,6 +51,20 @@ const servicesData = [
       "Integrated outdoor lighting & seating"
     ],
     link: "/contact"
+  },
+  {
+    id: "05", 
+    title: "Seismic Upgrades",
+    description: "Protect your investment and ensure your family's safety with professional seismic retrofitting. We reinforce your home's structural framing and foundation to withstand seismic activity, providing ultimate peace of mind and long-term stability.",
+    image: "/slick/slick-40.jpeg", // Change this number to whatever your seismic image is named
+    pointsTitle: "Specialties",
+    points: [
+      "Foundation anchor bolts & epoxy retrofitting",
+      "Plywood shear wall installation",
+      "Concrete foundation reinforcement & rebar",
+      "Structural frame securing & cripple wall bracing"
+    ],
+    link: "/portfolio"
   }
 ];
 
@@ -145,7 +159,7 @@ export default function ServicesList() {
                     fill
                     className="object-cover transition-transform duration-[2s] hover:scale-105"
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                    unoptimized
+                    
                   />
                   {/* Subtle glass overlay to blend perfectly with dark theme */}
                   <div className="absolute inset-0 bg-black/10 pointer-events-none" />

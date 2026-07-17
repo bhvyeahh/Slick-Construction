@@ -144,10 +144,10 @@ export default function StatsAboutSection() {
             <div className="flex items-center gap-4">
               <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/10">
                 <Image
-                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Realistic client picture
+                  src="/slick/client.avif" // Realistic client picture
                   alt="Alisson Backer"
                   fill
-                  unoptimized // Crucial for external URLs without next.config.js setup
+                 unoptimized
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
                 />
               </div>

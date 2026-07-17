@@ -27,9 +27,8 @@ export default function HeroSection() {
             fill
             priority
             className="object-cover object-center animate-[pulse_1s_ease-in-out]"
-            unoptimized
           />
-         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent lg:bg-gradient-to-r lg:from-[#0A0A0A]/90 lg:from-[20%] lg:via-[#0A0A0A]/60 lg:via-[45%] lg:to-[#0A0A0A]/20" />
+         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/55 to-transparent lg:bg-gradient-to-r lg:from-[#0A0A0A]/90 lg:from-[20%] lg:via-[#0A0A0A]/60 lg:via-[45%] lg:to-[#0A0A0A]/20" />
         </div>
 
         {/* --- CONTENT WRAPPER --- */}
@@ -39,9 +38,9 @@ export default function HeroSection() {
           {/* TEXT CONTENT & BUTTON */}
           <div className="max-w-xl shrink-0">
             
-            <h1 className="text-5xl lg:text-6xl font-bold uppercase leading-[1.05] tracking-tight mb-10 md:mb-8 animate-[fadeIn_1s_ease-out_0.2s_both]">
-              <span className="font-serif italic text-gray-200 normal-case"> To Building <br /> Better Everyday.</span>
-            </h1>
+           <h1 className="text-5xl lg:text-6xl font-bold uppercase leading-[1.05] tracking-tight mb-10 md:mb-8 animate-[fadeIn_1s_ease-out_0.2s_both] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] lg:drop-shadow-none">
+  <span className="font-serif italic text-gray-200 normal-case"> To Building <br /> Better Everyday.</span>
+</h1>
             
             <p className="text-gray-300 text-lg leading-relaxed mb-14 md:mb-10 lg:mb-12 font-medium animate-[fadeIn_1s_ease-out_0.4s_both]">
               Seamless builds and precision finishes. We deliver your vision from concept to completion.
