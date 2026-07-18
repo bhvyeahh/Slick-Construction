@@ -100,7 +100,7 @@ export default function HeroSection() {
           />
           <StatBlock 
             icon={<ShieldCheck className="w-6 h-6 sm:w-8 sm:h-8" />} 
-            title="LICENSED + PREMIUM INSURED" 
+            title="FULLY LICENSED, BONDED & INSURED" 
             text="Fully licensed, insured, and committed to your peace of mind." 
           />
           
