@@ -215,11 +215,11 @@ export default function Navbar() {
               className="p-6 md:p-10 shrink-0 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 relative z-20"
             >
               <div className="flex flex-col gap-2 font-mono text-[10px] uppercase tracking-widest text-gray-500">
-                <a href="mailto:info@slickconstruction.com" className="hover:text-[#D4AF37] transition-colors duration-300 block">
-                  info@slickconstruction.com
+                <a href="mailto:info@scsfinc.com" className="hover:text-[#D4AF37] transition-colors duration-300 block">
+                  info@scsfinc.com
                 </a>
-                <a href="tel:4156109225" className="hover:text-[#D4AF37] transition-colors duration-300 block">
-                  (415) 610-9225
+                <a href="tel:4159409199" className="hover:text-[#D4AF37] transition-colors duration-300 block">
+                  (415) 940 9199
                 </a>
               </div>
               
